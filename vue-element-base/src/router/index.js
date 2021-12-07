@@ -126,152 +126,11 @@ export const constantRoutes = [
         component: () => import('@/views/good/detail'),
         name: 'show order details',
         meta: { title: '货品详情', icon: 'guide'},
-        hidden: true
       }
     ]
   },
-  {
-    path: '/saler',
-    component: Layout,
-    redirect: '/saler/showOrder',
-    name: 'saler',
-    meta: {
-      title: '销售员',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'showOrder',
-        component: () => import('@/views/saler/showOrder'),
-        name: 'show Order',
-        meta: { title: '订单显示', icon: 'edit' }
-      },
-      {
-        path: 'makeOrder',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit'},
-      },
-      {
-        path: 'makeOrder/:id',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit'},
-        hidden: true
-      },
-      {
-        path: 'returnOrder',
-        component: () => import('@/views/saler/returnOrder'),
-        name: 'return Order',
-        meta: { title: '整单退货', icon: 'list' }
-      }
-    ]
-  },
-  {
-    path: '/leader',
-    component: Layout,
-    redirect: '/leader/check',
-    name: 'saler',
-    meta: {
-      title: '店长',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'check',
-        component: () => import('@/views/leader/check'),
-        name: 'check Order',
-        meta: { title: '审核订单', icon: 'edit' }
-      },
-      {
-        path: 'makeOrder',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit'},
-        hidden: true
-      },
-      {
-        path: 'returnOrder',
-        component: () => import('@/views/saler/returnOrder'),
-        name: 'return Order',
-        meta: { title: '整单退货', icon: 'list' },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/cashier',
-    component: Layout,
-    redirect: '/cashier/checkout',
-    name: 'saler',
-    meta: {
-      title: '收银员',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'checkout',
-        component: () => import('@/views/cashier/checkout'),
-        name: '收银',
-        meta: { title: '开单收银', icon: 'edit' }
-      },
-      {
-        path: 'cash',
-        component: () => import('@/views/cashier/cash'),
-        name: 'cash',
-        meta: { title: '零售收银', icon: 'edit'},
-      },
-      {
-        path: 'returnOrder',
-        component: () => import('@/views/saler/returnOrder'),
-        name: 'return Order',
-        meta: { title: '整单退货', icon: 'list' },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/wm',
-    component: Layout,
-    redirect: '/wm/alloc',
-    name: 'saler',
-    meta: {
-      title: '仓库管理员',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'alloc',
-        component: () => import('@/views/wm/alloc'),
-        name: 'allocate goods',
-        meta: { title: '配货', icon: 'edit' }
-      },
-      {
-        path: 'addGood',
-        component: () => import('@/views/wm/addGood'),
-        name: 'add a good',
-        meta: { title: '添加货品', icon: 'edit'}
-      },
-      {
-        path: 'check',
-        component: () => import('@/views/wm/check'),
-        name: 'check goods in the warehouse',
-        meta: { title: '库存盘点', icon: 'list' }
-      },
-      {
-        path: 'stat',
-        component: () => import('@/views/wm/stat'),
-        name: 'statistic goods in the warehouse',
-        meta: { title: '库存统计', icon: 'list' }
-      },
-      {
-        path: 'queryByWh',
-        component: () => import('@/views/wm/queryByWh'),
-        name: 'query By warehouse ID',
-        meta: { title: '分仓查询', icon: 'list' }
-      },
-    ]
-  }
+
+
 
 ]
 
@@ -313,6 +172,153 @@ export const asyncRoutes = [
         name: 'ArticleList',
         meta: { title: 'Article List', icon: 'list' }
       }
+    ]
+  },
+  {
+    path: '/saler',
+    component: Layout,
+    redirect: '/saler/showOrder',
+    name: 'saler',
+    meta: {
+      title: '销售员',
+      icon: 'el-icon-s-help',
+      roles:['saler','leader']
+    },
+    children: [
+      {
+        path: 'showOrder',
+        component: () => import('@/views/saler/showOrder'),
+        name: 'show Order',
+        meta: { title: '订单显示', icon: 'edit' }
+      },
+      {
+        path: 'makeOrder',
+        component: () => import('@/views/saler/makeOrder'),
+        name: 'make Order',
+        meta: { title: '开销售单', icon: 'edit'},
+      },
+      {
+        path: 'makeOrder/:id',
+        component: () => import('@/views/saler/makeOrder'),
+        name: 'make Order',
+        meta: { title: '开销售单', icon: 'edit'},
+        hidden: true
+      },
+      {
+        path: 'returnOrder',
+        component: () => import('@/views/saler/returnOrder'),
+        name: 'return Order',
+        meta: { title: '整单退货', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/leader',
+    component: Layout,
+    redirect: '/leader/check',
+    name: 'saler',
+    meta: {
+      title: '店长',
+      icon: 'el-icon-s-help',
+      roles: ['leader']
+    },
+    children: [
+      {
+        path: 'check',
+        component: () => import('@/views/leader/check'),
+        name: 'check Order',
+        meta: { title: '审核订单', icon: 'edit' }
+      },
+      {
+        path: 'makeOrder',
+        component: () => import('@/views/saler/makeOrder'),
+        name: 'make Order',
+        meta: { title: '开销售单', icon: 'edit'},
+        hidden: true
+      },
+      {
+        path: 'returnOrder',
+        component: () => import('@/views/saler/returnOrder'),
+        name: 'return Order',
+        meta: { title: '整单退货', icon: 'list' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/cashier',
+    component: Layout,
+    redirect: '/cashier/checkout',
+    name: 'saler',
+    meta: {
+      title: '收银员',
+      icon: 'el-icon-s-help',
+      roles: ['cashier','leader']
+    },
+    children: [
+      {
+        path: 'checkout',
+        component: () => import('@/views/cashier/checkout'),
+        name: '收银',
+        meta: { title: '开单收银', icon: 'edit' }
+      },
+      {
+        path: 'cash',
+        component: () => import('@/views/cashier/cash'),
+        name: 'cash',
+        meta: { title: '零售收银', icon: 'edit'},
+      },
+      {
+        path: 'returnOrder',
+        component: () => import('@/views/saler/returnOrder'),
+        name: 'return Order',
+        meta: { title: '整单退货', icon: 'list' },
+        hidden: true
+      }
+    ]
+  },
+
+  {
+    path: '/wm',
+    component: Layout,
+    redirect: '/wm/alloc',
+    name: 'saler',
+    meta: {
+      title: '仓库管理员',
+      icon: 'el-icon-s-help',
+      roles: ['wm','leader']
+    },
+    children: [
+      {
+        path: 'alloc',
+        component: () => import('@/views/wm/alloc'),
+        name: 'allocate goods',
+        meta: { title: '配货', icon: 'edit' }
+      },
+      {
+        path: 'addGood',
+        component: () => import('@/views/wm/addGood'),
+        name: 'add a good',
+        meta: { title: '添加货品', icon: 'edit'}
+      },
+      {
+        path: 'check',
+        component: () => import('@/views/wm/check'),
+        name: 'check goods in the warehouse',
+        meta: { title: '库存盘点', icon: 'list' }
+      },
+      {
+        path: 'stat',
+        component: () => import('@/views/wm/stat'),
+        name: 'statistic goods in the warehouse',
+        meta: { title: '库存统计', icon: 'list' }
+      },
+      {
+        path: 'queryByWh',
+        component: () => import('@/views/wm/queryByWh'),
+        name: 'query By warehouse ID',
+        meta: { title: '分仓查询', icon: 'list' }
+      },
     ]
   },
 

@@ -105,3 +105,21 @@ export function cash(orderItems) {
     data:orderItems
   })
 }
+
+export function getAllUnAlcedOrder() {
+  return request({
+    url: '/order/all',                //  测试用，实际上/order/searchByState
+    method: 'get',
+    params: {state:"未出库"}
+  })
+}
+
+export function alcOrder(id) {
+  return request({
+    url: '/order/updateState',                
+    method: 'post',
+    params: {order_id:id,
+      newState:"已完成"
+    }
+  })
+}

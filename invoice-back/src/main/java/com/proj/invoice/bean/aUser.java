@@ -36,4 +36,12 @@ public class aUser {
     this.position = position;
   }
 
+  @Override
+  public String toString() {
+    return "aUser{" +
+            "account='" + account + '\'' +
+            ", pwd='" + pwd + '\'' +
+            ", position='" + position + '\'' +
+            '}';
+  }
 }

@@ -15,3 +15,28 @@ export function searchGoodsByName(name) {
     params: {name}
   })
 }
+
+export function add(good) {
+  return request({
+    url: '/good/add',
+    method: 'post',
+    data:good
+  })
+}
+
+export function getGoodStock(repId,goodId) {
+  return request({
+    url: '/good/getStockById',
+    method: 'get',
+    params: {repId:repId,
+        goodId:goodId
+    }
+  })
+}
+
+export function getAllGoods() {
+  return request({
+    url: '/good/getAll',
+    method: 'get',
+  })
+}

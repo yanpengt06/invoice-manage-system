@@ -11,15 +11,17 @@ public class Good {
   private double inputPrice;
   private double retailPrice;
   private double wholesalePrice;
+  private long totalStock;
 
 
-  public Good(long id, String name, String description, double inputPrice, double retailPrice, double wholesalePrice) {
+  public Good(long id, String name, String description, double inputPrice, double retailPrice, double wholesalePrice, long totalStock) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.inputPrice = inputPrice;
     this.retailPrice = retailPrice;
     this.wholesalePrice = wholesalePrice;
+    this.totalStock = totalStock;
   }
 
   public Good()
@@ -81,4 +83,24 @@ public class Good {
     this.wholesalePrice = wholesalePrice;
   }
 
+  public long getTotalStock() {
+    return totalStock;
+  }
+
+  public void setTotalStock(long totalStock) {
+    this.totalStock = totalStock;
+  }
+
+  @Override
+  public String toString() {
+    return "Good{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", inputPrice=" + inputPrice +
+            ", retailPrice=" + retailPrice +
+            ", wholesalePrice=" + wholesalePrice +
+            ", totalStock=" + totalStock +
+            '}';
+  }
 }

@@ -10,6 +10,17 @@ public class RepositoryItem {
   private long goodId;
   private long num;
 
+  public RepositoryItem(long itemId, long repositoryId, long goodId, long num) {
+    this.itemId = itemId;
+    this.repositoryId = repositoryId;
+    this.goodId = goodId;
+    this.num = num;
+  }
+
+  public RepositoryItem()
+  {
+
+  }
 
   public long getItemId() {
     return itemId;

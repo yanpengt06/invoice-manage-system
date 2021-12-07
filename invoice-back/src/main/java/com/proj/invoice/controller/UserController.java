@@ -16,16 +16,22 @@ public class UserController {
     @PostMapping("login")
     public R login(@RequestBody aUser user){
         System.out.println(user);
-
-        return R.ok().data("token","12138");
+        return R.ok().data("token",user.getAccount());
     }
 
     @GetMapping("info")
-    public R info(@RequestParam String token){
+    public R info(@RequestParam long token){
         String[] roles = new String[1];
-        roles[0] = "admin";
+        if(token == 12138)
+            roles[0] = "saler";
+        else if(token == 12139)
+            roles[0] = "cashier";
+        else if(token == 12140)
+            roles[0] = "leader";
+        else if(token == 12141)
+            roles[0] = "wm";
         System.out.println(token);
-        return R.ok().data("name","admin").data("avatar","ps://wpimg.wallstcn.com/f778738c-e4httf8-4870-b634-56703b4acafe.gif")
+        return R.ok().data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif")
                 .data("introduction","I am a super administrator").data("roles",roles);
     }
 

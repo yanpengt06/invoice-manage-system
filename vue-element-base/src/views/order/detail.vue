@@ -3,9 +3,10 @@
   <el-table :data="orderItems" style="width: 100%">
     <el-table-column prop="goodId" label="商品编号" width="180">
     </el-table-column>
-    <el-table-column prop="name" label="商品名称" width="180">
+    <el-table-column label="商品名称" width="180">
       <template slot-scope="scope">
-        {{ getGoodName(scope.row.goodId) }}
+        <id-to-name :goodId="scope.row.goodId">
+        </id-to-name>
       </template>
     </el-table-column>
     <el-table-column prop="num" label="个数" width="180"> </el-table-column>
@@ -25,7 +26,9 @@
 <script>
 import { getOrderDetail,getOrderById } from "@/api/order";
 import { queryGoodById } from "@/api/good";
+import idToName from '@/components/idToName.vue';
 export default {
+  components: { idToName },
   data() {
     return {
       orderItems: [
@@ -55,12 +58,11 @@ export default {
     handleQuery(goodId) {
       this.$router.push();
     },
-    getGoodName(id){
-      queryGoodById(id).then(response =>{
+     getGoodName(id){
+       queryGoodById(id).then(response =>{
            this.name = response.data.item.name;       
       })
-      return this.name
-    }
+    },
   },
 };
 </script>

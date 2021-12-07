@@ -1,38 +1,38 @@
 <template>
-  <el-table :data="orderItems" style="width: 100%">
-    <el-table-column prop="goodId" label="商品编号" width="180">
+  <el-table :data="goods" style="width: 100%">
+    <el-table-column prop="id" label="商品ID" width="180">
     </el-table-column>
     <el-table-column prop="name" label="商品名称" width="180">
     </el-table-column>
-    <el-table-column prop="num" label="个数" width="180"> </el-table-column>
-    <el-table-column prop="num" label="操作">
-      <el-button size="mini" @click="handleQuery(scope.row.goodId)"
-        >查看详情
-      </el-button>
-    </el-table-column>
+    <el-table-column prop="description" label="描述" width="180"> </el-table-column>
+    <el-table-column prop="inputPrice" label="进价" width="180"> </el-table-column>
+    <el-table-column prop="retailPrice" label="零售价" width="180"> </el-table-column>
+    <el-table-column prop="wholesalePrice" label="批发价" width="180"> </el-table-column>
+
   </el-table>
 </template>
 
 <script>
-import { getOrderDetail } from "@/api/order";
 import { queryGoodById } from "@/api/good";
 export default {
   data() {
     return {
-      orderItems: [
+      goods: [
         {
-          itemId: 1,
-          goodId: 3,
-          num: 300,
-          orderId: 1,
+          name: '铅笔',
+          id: 3,
+          description: '这是一根铅笔',
+          inputPrice: 50,
+          retailPrice: 60,
+          wholesalePrice:70
         },
       ],
     };
   },
   created() {
-    getOrderDetail(this.$route.params.id).then((response) => {
-      this.orderItems = response.data.items;
-    });
+    queryGoodById(this.$route.params.id).then(response =>{
+      this.goods = [response.data.item]
+    })
   },
   methods: {
     handleQuery(goodId) {

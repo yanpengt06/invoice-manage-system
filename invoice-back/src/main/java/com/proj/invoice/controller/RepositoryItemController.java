@@ -8,12 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class RepositoryItemController {
     @Autowired
     @Qualifier("ItemService")
     ItemService<RepositoryItem> itemService;
+
+    // TODO: 2021/12/8 修改库存的接口
+    @RequestMapping("/repositoryItem/mdyStock")
+    public R mdfStock(@RequestParam long repId,@RequestParam long goodId,@RequestParam long num)
+    {
+        System.out.println(num);
+        return R.ok();
+    }
 
     @RequestMapping("/repositoryItem/add")
     public R add(@RequestBody RepositoryItem repositoryItem){
@@ -42,7 +53,13 @@ public class RepositoryItemController {
 
     @RequestMapping("/repositoryItem/searchByRepositoryId")
     public R searchByRepositoryId(@RequestParam long repositoryId){
-        return itemService.search(repositoryId,"repository_id",new RepositoryItem());
+//        return itemService.search(repositoryId,"repository_id",new RepositoryItem());
+        List<RepositoryItem> list = new ArrayList<>();
+        RepositoryItem item1 = new RepositoryItem(1,2,3,400);
+        RepositoryItem item2 = new RepositoryItem(2,2,4,200);
+        list.add(item1);
+        list.add(item2);
+        return R.ok().data("items",list);
     }
 
     @RequestMapping("/repositoryItem/all")

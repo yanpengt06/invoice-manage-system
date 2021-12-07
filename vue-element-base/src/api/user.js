@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { removeToken } from '@/utils/auth'
 
 export function login(data) {
   return request({
@@ -17,8 +18,6 @@ export function getInfo(token) {
 }
 
 export function logout() {
-  return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
-  })
+  removeToken()
+  return this.$router.push({path:'/login'});
 }

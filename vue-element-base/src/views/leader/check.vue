@@ -32,8 +32,7 @@
 </template>
 
   <script>
-import { getAllOrderToCheck, passOrder ,refuseOrder} from "@/api/order";
-import { SUCCESS } from "dropzone";
+import { getAllOrderToCheck, passOrder ,refuseOrder} from "@/api/order";;
 export default {
   data() {
     return {
