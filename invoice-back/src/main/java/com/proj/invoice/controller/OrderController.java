@@ -32,17 +32,33 @@ public class OrderController {
     @Autowired
     GoodMapper goodMapper;
 
+    @GetMapping("/order/checkout")
+    public R checkout(@RequestParam int id)
+    {
+        System.out.println(id);
+        return R.ok();
+    }
+
     //获取所有销售单
     @GetMapping("/order/all")
     public R getAllOrder(){
 //        List<aOrder> list=orderMapper.selectList(null);
         List<aOrder> list = new ArrayList<>();
-        list.add(new aOrder(1,"未支付", LocalDateTime.now(),3,300));
-        list.add(new aOrder(4,"已保存", LocalDateTime.now(),3,500));
-        list.add(new aOrder(5,"待审核", LocalDateTime.now(),3,300));
+        list.add(new aOrder(1,"未支付", LocalDateTime.now(),3,300,9,800));
+        list.add(new aOrder(4,"已保存", LocalDateTime.now(),3,500,9,900));
+        list.add(new aOrder(5,"待审核", LocalDateTime.now(),3,300,9,900));
         R r=R.ok().data("items",list);
         return r;
     }
+
+    // TODO: 2021/12/7 模拟超市收银结账 
+    @RequestMapping("/order/cash")
+    public R cash(@RequestBody List<OrderItem> list)
+    {
+        System.out.println(list.get(0));
+        return R.ok();
+    }
+
 
     // TODO: 2021/12/4 参数格式： {id: xxx, orderItems: list} 没有订单号，id = -1; orderItems内orderid同前，itemId都是-1
     // orderItem多一个属性key，前端控制按钮使用，前端不好去掉。。。这里处理一下呗
@@ -75,14 +91,17 @@ public class OrderController {
     //更新销售单状态
     @PostMapping("/order/updateState")
     public R updateState(@RequestParam long order_id,@RequestParam String newState){
-        aOrder order=orderMapper.selectById(order_id);
-        order.setState(newState);
-        int i=orderMapper.updateById(order);
-        if(i>0){
-            return R.ok();
-        }else{
-            return R.error();
-        }
+//        aOrder order=orderMapper.selectById(order_id);
+//        order.setState(newState);
+//        int i=orderMapper.updateById(order);
+//        if(i>0){
+//            return R.ok();
+//        }else{
+//            return R.error();
+//        }
+        System.out.println(order_id);
+        System.out.println(newState);
+        return R.ok();
     }
 
     //
@@ -134,7 +153,9 @@ public class OrderController {
 
     @RequestMapping("/order/searchById")
     public R search(@RequestParam long id){
-        return itemService.search(id,new aOrder());
+
+//        return itemService.search(id,new aOrder());
+        return R.ok().data("item",new aOrder(5,"待支付",LocalDateTime.now(),5,600,8,1000));
     }
 
     @RequestMapping("/order/searchByCustomerId")

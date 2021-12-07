@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class GoodController {
@@ -37,12 +40,22 @@ public class GoodController {
 
     @RequestMapping("/good/searchById")
     public R search(@RequestParam long id){
-        return itemService.search(id,new Good());
+//        return itemService.search(id,new Good());
+        Good g = new Good(5,"pencil","description",5,6,7);
+        return R.ok().data("item",g);
     }
 
     @RequestMapping("/good/searchByName")
     public R search(@RequestParam String name){
-        return itemService.search(name,"name",new Good());
+//        return itemService.search(name,"name",new Good());
+        List<Good> list = new ArrayList<>();
+        Good g1 = new Good(5,"钢笔-黑","这是黑色钢笔",1,2,3);
+        Good g2 = new Good(6,"钢笔-蓝","这是蓝色钢笔001",1,2,3);
+        Good g3 = new Good(7,"钢笔-蓝-","这是蓝色钢笔002",1,2,3);
+        list.add(g1);
+        list.add(g2);
+        list.add(g3);
+        return R.ok().data("items",list);
     }
 
     @RequestMapping("/good/all")

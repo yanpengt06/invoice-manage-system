@@ -13,6 +13,21 @@ public class Good {
   private double wholesalePrice;
 
 
+  public Good(long id, String name, String description, double inputPrice, double retailPrice, double wholesalePrice) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.inputPrice = inputPrice;
+    this.retailPrice = retailPrice;
+    this.wholesalePrice = wholesalePrice;
+  }
+
+  public Good()
+  {
+
+  }
+
+
   public long getId() {
     return id;
   }

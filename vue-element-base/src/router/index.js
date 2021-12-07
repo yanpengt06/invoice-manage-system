@@ -111,6 +111,21 @@ export const constantRoutes = [
         component: () => import('@/views/order/detail'),
         name: 'show order details',
         meta: { title: '订单详情', icon: 'guide'},
+        hidden: false
+      }
+    ]
+  },
+
+  {
+    path: '/good',
+    component: Layout,
+    redirect: '/good/detail/:id',
+    children: [
+      {
+        path: 'detail/:id',
+        component: () => import('@/views/good/detail'),
+        name: 'show order details',
+        meta: { title: '货品详情', icon: 'guide'},
         hidden: true
       }
     ]
@@ -187,7 +202,7 @@ export const constantRoutes = [
   {
     path: '/cashier',
     component: Layout,
-    redirect: '/cashier/cash',
+    redirect: '/cashier/checkout',
     name: 'saler',
     meta: {
       title: '收银员',
@@ -195,17 +210,16 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: 'cash',
-        component: () => import('@/views/cashier/cash'),
+        path: 'checkout',
+        component: () => import('@/views/cashier/checkout'),
         name: '收银',
-        meta: { title: '收银', icon: 'edit' }
+        meta: { title: '开单收银', icon: 'edit' }
       },
       {
-        path: 'makeOrder',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit'},
-        hidden: true
+        path: 'cash',
+        component: () => import('@/views/cashier/cash'),
+        name: 'cash',
+        meta: { title: '零售收银', icon: 'edit'},
       },
       {
         path: 'returnOrder',

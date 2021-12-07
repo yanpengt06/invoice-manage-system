@@ -31,7 +31,7 @@ export default {
           time: "2016-01-01",
           state: "已支付",
           customerId: 3,
-          profit:200
+          salerId: 9
         },
       ],
     };

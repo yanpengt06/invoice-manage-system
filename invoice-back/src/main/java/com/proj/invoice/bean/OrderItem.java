@@ -57,4 +57,13 @@ public class OrderItem {
     this.num = num;
   }
 
+  @Override
+  public String toString() {
+    return "OrderItem{" +
+            "itemId=" + itemId +
+            ", orderId=" + orderId +
+            ", goodId=" + goodId +
+            ", num=" + num +
+            '}';
+  }
 }
