@@ -10,6 +10,17 @@ public class Repository {
   private String address;
   private String phone;
 
+  public Repository(long repositoryId, String classification, String address, String phone) {
+    this.repositoryId = repositoryId;
+    this.classification = classification;
+    this.address = address;
+    this.phone = phone;
+  }
+
+  public Repository()
+  {
+
+  }
 
   public long getRepositoryId() {
     return repositoryId;
@@ -46,4 +57,13 @@ public class Repository {
     this.phone = phone;
   }
 
+  @Override
+  public String toString() {
+    return "Repository{" +
+            "repositoryId=" + repositoryId +
+            ", classification='" + classification + '\'' +
+            ", address='" + address + '\'' +
+            ", phone='" + phone + '\'' +
+            '}';
+  }
 }

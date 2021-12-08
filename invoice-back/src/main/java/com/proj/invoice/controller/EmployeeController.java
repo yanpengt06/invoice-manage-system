@@ -17,7 +17,9 @@ public class EmployeeController {
 
     @RequestMapping("/employee/add")
     public R add(@RequestBody Employee employee){
-        return itemService.add(employee);
+//        return itemService.add(employee);
+        System.out.println(employee);
+        return R.ok();
     }
 
     @RequestMapping("/employee/delById")
@@ -32,7 +34,8 @@ public class EmployeeController {
 
     @RequestMapping("/employee/update")
     public R update(@RequestBody Employee employee){
-        return itemService.update(employee);
+//        return itemService.update(employee);
+        return R.ok();
     }
 
     @RequestMapping("/employee/searchById")

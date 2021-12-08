@@ -6,10 +6,13 @@ import com.proj.invoice.service.ItemService;
 import com.proj.invoice.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@CrossOrigin
+@RestController
 public class RepositoryController {
     @Autowired
     @Qualifier("ItemService")
@@ -17,7 +20,9 @@ public class RepositoryController {
 
     @RequestMapping("/repository/add")
     public R add(@RequestBody Repository repository){
-        return itemService.add(repository);
+//        return itemService.add(repository);
+        System.out.println(repository);
+        return R.ok();
     }
 
     @RequestMapping("/repository/delById")
@@ -47,6 +52,14 @@ public class RepositoryController {
 
     @RequestMapping("/repository/all")
     public R all(){
-        return itemService.all(new Repository());
+//        return itemService.all(new Repository());
+        List<Repository> list = new ArrayList<>();
+        Repository r1 = new Repository(1,"大库","一曼街91号","13345678912");
+        Repository r2 = new Repository(1,"门店","一曼街93号","13345678912");
+        Repository r3 = new Repository(1,"大库","西大直街91号","13345678912");
+        list.add(r1);
+        list.add(r2);
+        list.add(r3);
+        return R.ok().data("items",list);
     }
 }

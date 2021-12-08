@@ -57,7 +57,9 @@ public class GoodController {
 
     @RequestMapping("/good/update")
     public R update(@RequestBody Good good){
-        return itemService.update(good);
+//        return itemService.update(good);
+        System.out.println(good);
+        return R.ok();
     }
 
     @RequestMapping("/good/searchById")

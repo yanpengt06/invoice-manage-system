@@ -1,5 +1,6 @@
 package com.proj.invoice.controller;
 
+import com.proj.invoice.bean.Good;
 import com.proj.invoice.bean.OrderItem;
 import com.proj.invoice.bean.RepositoryItem;
 import com.proj.invoice.service.ItemService;
@@ -26,6 +27,19 @@ public class RepositoryItemController {
         return R.ok();
     }
 
+    // TODO: 2021/12/8 给repId，返回该仓库存放的所有货品（包括库存），以GoodList 返回，多一个stock属性，存储在该仓库的库存
+    @RequestMapping("/repositoryItem/getGoodsByRepId")
+    public R getGoodsByRepId(@RequestParam long repId){
+        List<Good> list = new ArrayList<>();
+        Good g1 = new Good(5,"钢笔-黑","这是黑色钢笔",1,2,3,200);
+        Good g2 = new Good(6,"钢笔-蓝","这是蓝色钢笔001",1,2,3,200);
+        Good g3 = new Good(7,"钢笔-蓝-","这是蓝色钢笔002",1,2,3,300);
+        list.add(g1);
+        list.add(g2);
+        list.add(g3);
+        return R.ok().data("items",list);
+    }
+    
     @RequestMapping("/repositoryItem/add")
     public R add(@RequestBody RepositoryItem repositoryItem){
         return itemService.add(repositoryItem);

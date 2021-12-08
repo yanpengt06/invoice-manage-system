@@ -141,7 +141,6 @@ export const constantRoutes = [
 export const asyncRoutes = [
 
   /** when your routing map is too long, you can split it into small modules **/
-  tableRouter,
 
   {
     path: '/example',
@@ -149,7 +148,7 @@ export const asyncRoutes = [
     redirect: '/example/list',
     name: 'Example',
     meta: {
-      title: 'Example',
+      title: '发布公告',
       icon: 'el-icon-s-help'
     },
     children: [
@@ -230,19 +229,41 @@ export const asyncRoutes = [
         meta: { title: '审核订单', icon: 'edit' }
       },
       {
-        path: 'makeOrder',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit'},
-        hidden: true
+        path: 'setPrice',
+        component: () => import('@/views/leader/setPrice'),
+        name: 'set Price',
+        meta: { title: '商品定价', icon: 'edit'},
       },
       {
-        path: 'returnOrder',
-        component: () => import('@/views/saler/returnOrder'),
-        name: 'return Order',
-        meta: { title: '整单退货', icon: 'list' },
-        hidden: true
-      }
+        path: 'addWh',
+        component: () => import('@/views/leader/addWarehouse'),
+        name: 'add a warehouse',
+        meta: { title: '添加仓库', icon: 'list' },
+      },
+      {
+        path: 'showAllRep',
+        component: () => import('@/views/leader/showAllRep'),
+        name: 'show all warehouse',
+        meta: { title: '查看仓库', icon: 'list' },
+      },
+      {
+        path: 'setPos',
+        component: () => import('@/views/leader/setPos'),
+        name: 'set position',
+        meta: { title: '设定职位', icon: 'list' },
+      },        
+      {
+        path: 'showAllEplys',
+        component: () => import('@/views/leader/showAllEplys'),
+        name: 'show all eplys',
+        meta: { title: '所有员工', icon: 'list' },
+      },
+      {
+        path: 'addEply',
+        component: () => import('@/views/leader/addEply'),
+        name: 'add an employee',
+        meta: { title: '添加员工', icon: 'list' },
+      }    
     ]
   },
   {
@@ -322,18 +343,6 @@ export const asyncRoutes = [
     ]
   },
 
-  {
-    path: '/tab',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/tab/index'),
-        name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
-      }
-    ]
-  },
 
   {
     path: '/error',

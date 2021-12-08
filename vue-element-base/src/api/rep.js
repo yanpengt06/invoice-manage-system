@@ -19,3 +19,26 @@ export function getRepItemsByRepId(id) {
       }
     })
   }
+  export function getGoodsByRepId(repId) {
+    return request({
+      url: '/repositoryItem/getGoodsByRepId',
+      method: 'get',
+      params: {
+        repId:repId
+      }
+    })
+  }
+  export function addRep(rep) {
+    return request({
+      url: '/repository/add',
+      method: 'post',
+      data: rep
+    })
+  }
+
+  export function getAllReps() {
+    return request({
+      url: '/repository/all',
+      method: 'get',
+    })
+  }

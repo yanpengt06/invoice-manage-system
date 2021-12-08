@@ -40,3 +40,11 @@ export function getAllGoods() {
     method: 'get',
   })
 }
+
+export function modify(good) {
+  return request({
+    url: '/good/update',
+    method: 'post',
+    data: good
+  })
+}
