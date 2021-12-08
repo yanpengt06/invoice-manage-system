@@ -12,6 +12,19 @@ public class Customer {
   private String classification;
 
 
+  public Customer(long id, String name, String phone, String address, String classification) {
+    this.id = id;
+    this.name = name;
+    this.phone = phone;
+    this.address = address;
+    this.classification = classification;
+  }
+
+  public Customer()
+  {
+
+  }
+
   public long getId() {
     return id;
   }
@@ -56,4 +69,14 @@ public class Customer {
     this.classification = classification;
   }
 
+  @Override
+  public String toString() {
+    return "Customer{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", phone='" + phone + '\'' +
+            ", address='" + address + '\'' +
+            ", classification='" + classification + '\'' +
+            '}';
+  }
 }

@@ -50,6 +50,7 @@ public class EmployeeController {
 
     @RequestMapping("/employee/all")
     public R all(){
-        return itemService.all(new Employee());
+//        return itemService.all(new Employee());
+        return R.ok();
     }
 }

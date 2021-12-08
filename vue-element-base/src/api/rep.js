@@ -42,3 +42,16 @@ export function getRepItemsByRepId(id) {
       method: 'get',
     })
   }
+
+  export function deploy(repAid,repBid,goodId,num) {
+    return request({
+      url: '/repository/deploy',
+      method: 'get',
+      params: {
+        repAid: repAid,
+        repBid: repBid,
+        goodId: goodId,
+        num : num
+      }
+    })
+  }

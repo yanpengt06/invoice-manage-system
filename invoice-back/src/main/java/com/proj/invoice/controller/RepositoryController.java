@@ -25,6 +25,15 @@ public class RepositoryController {
         return R.ok();
     }
 
+    @GetMapping("/repository/deploy")
+    public R deploy(@RequestParam long repAid,@RequestParam long repBid,
+                    @RequestParam long goodId,@RequestParam long num)
+    {
+        System.out.println(num);
+        return R.ok();
+    }
+
+
     @RequestMapping("/repository/delById")
     public R del(@RequestParam long id){
         return itemService.del(id,new Repository());

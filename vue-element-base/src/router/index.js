@@ -208,7 +208,19 @@ export const asyncRoutes = [
         component: () => import('@/views/saler/returnOrder'),
         name: 'return Order',
         meta: { title: '整单退货', icon: 'list' }
-      }
+      },
+      {
+        path: 'addCustomer',
+        component: () => import('@/views/saler/addCustomer'),
+        name: 'add Customer',
+        meta: { title: '添加客户信息', icon: 'list' }
+      },
+      {
+        path: 'showAllCustomers',
+        component: () => import('@/views/saler/showAllCustomers'),
+        name: 'show all Customer',
+        meta: { title: '所有客户', icon: 'list' }
+      }      
     ]
   },
   {
@@ -339,6 +351,12 @@ export const asyncRoutes = [
         component: () => import('@/views/wm/queryByWh'),
         name: 'query By warehouse ID',
         meta: { title: '分仓查询', icon: 'list' }
+      },
+      {
+        path: 'deployStock',
+        component: () => import('@/views/wm/deployStock'),
+        name: 'deploy',
+        meta: { title: '调配库存', icon: 'list' }
       },
     ]
   },
