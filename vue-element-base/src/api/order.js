@@ -58,7 +58,7 @@ export function getAllOrderToCheck() {
 export function passOrder(id) {
   return request({
     url: '/order/updateState',                
-    method: 'post',
+    method: 'get',
     params: {order_id:id,
       newState:"待支付"
     }
@@ -68,7 +68,7 @@ export function passOrder(id) {
 export function refuseOrder(id) {
   return request({
     url: '/order/updateState',                
-    method: 'post',
+    method: 'get',
     params: {order_id:id,
       newState:"已保存"
     }
@@ -107,7 +107,9 @@ export function cash(orderItems) {
   return request({
     url: '/order/cash',                
     method: 'post',
-    data:orderItems
+    data:{
+      orderItems:orderItems,
+    }
   })
 }
 

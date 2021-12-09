@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    <div class="dashboard-text">你好: {{ name }}</div>
     <div class="dashboard-text">欢迎使用进销存管理系统！</div>
   </div>
 </template>

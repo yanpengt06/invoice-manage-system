@@ -23,7 +23,7 @@
         </el-table-column>
         <el-table-column prop="name" label="货品名称" width="360">
         </el-table-column>
-        <el-table-column prop="totalStock" label="库存" width="360">
+        <el-table-column prop="totalNum" label="库存" width="360">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -47,7 +47,7 @@ export default {
         {
           id: 5,
           name: "钢笔",
-          totalStock: 500,
+          totalNum: 500,
         },
       ],
       repId: 55

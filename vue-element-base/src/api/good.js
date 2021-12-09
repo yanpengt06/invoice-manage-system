@@ -10,7 +10,7 @@ export function queryGoodById(id) {
 
 export function searchGoodsByName(name) {
   return request({
-    url: '/good/searchByName',
+    url: '/good/blurSearch',
     method: 'get',
     params: {name}
   })
@@ -41,10 +41,14 @@ export function getAllGoods() {
   })
 }
 
-export function modify(good) {
+export function modify(id,retail,wholesale) {
   return request({
     url: '/good/setPrice',
-    method: 'post',
-    data: good
+    method: 'get',
+    params: {
+      id:id,
+      retail_price: retail,
+      wholesale_price:wholesale
+    }
   })
 }

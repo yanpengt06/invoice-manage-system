@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form"  label-width="120px">
+  <el-form ref="form"  label-width="120px" style="margin: 100px auto auto 400px">
     <el-form-item label="商品id">
       <el-input v-model="goodId" style="width: 250px"></el-input>
     </el-form-item>

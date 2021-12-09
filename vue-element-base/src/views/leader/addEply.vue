@@ -43,7 +43,7 @@ export default {
         phone: '18912345678'
       },
       acc:{
-        account: 12166,
+        account: 0,
         pwd: 111111
       }
     };

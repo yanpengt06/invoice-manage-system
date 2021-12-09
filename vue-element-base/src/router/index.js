@@ -75,8 +75,8 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        name: '主页',
+        meta: { title: '主页', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -85,19 +85,20 @@ export const constantRoutes = [
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
-    meta: { title: 'Guide', icon: 'guide'},
+    meta: { title: '操作指南', icon: 'guide'},
     children: [
       {
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
+        meta: { title: '操作指南', icon: 'guide', noCache: true }
       },
       {
         path: 'test',
         component: () => import('@/views/guide/test'),
         name: 'test',
-        meta: { title: '测试用', icon: 'guide'}
+        meta: { title: '测试用', icon: 'guide'},
+        hidden:true
       }
     ]
   },
@@ -111,7 +112,7 @@ export const constantRoutes = [
         component: () => import('@/views/order/detail'),
         name: 'show order details',
         meta: { title: '订单详情', icon: 'guide'},
-        hidden: false
+        hidden: true
       }
     ]
   },
@@ -126,6 +127,7 @@ export const constantRoutes = [
         component: () => import('@/views/good/detail'),
         name: 'show order details',
         meta: { title: '货品详情', icon: 'guide'},
+        hidden:true
       }
     ]
   },
@@ -148,15 +150,16 @@ export const asyncRoutes = [
     redirect: '/example/list',
     name: 'Example',
     meta: {
-      title: '发布公告',
-      icon: 'el-icon-s-help'
+      title: '公告',
+      icon: 'el-icon-s-help',
+      roles: ['店长']
     },
     children: [
       {
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
+        meta: { title: '发布公告', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
@@ -169,7 +172,7 @@ export const asyncRoutes = [
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
+        meta: { title: '公告列表', icon: 'list' }
       }
     ]
   },

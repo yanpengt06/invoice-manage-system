@@ -40,7 +40,7 @@ export default {
         type: "warning",
       })
         .then(() => {
-        modify(this.good).then((response) => {
+        modify(this.good.id,this.good.retailPrice,this.good.wholesalePrice).then((response) => {
         if (response.code == 20000) {
           this.$message({
               type: "success",

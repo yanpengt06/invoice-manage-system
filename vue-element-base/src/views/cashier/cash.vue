@@ -31,7 +31,7 @@
             <el-button type="primary" @click="submitForm('dynamicValidateForm')"
             >结账
             </el-button>
-            <el-button type="primary" @click="handlePay(this.order.orderId)"
+            <el-button type="primary" @click="handlePay(order.orderId)"
             >确认支付
             </el-button>            
           <el-button @click="addOrderItem(-1)">新增一类商品</el-button>
@@ -124,6 +124,7 @@ export default {
                         message: "收银成功"
                     })
                     this.order = response.data.item;
+                    console.log(this.order);
                 }
                 else
                 {
@@ -160,7 +161,7 @@ export default {
         goodId: id,
         key: Date.now(),
         orderId: orderId,
-        itemId: -1,
+        itemId: 0,
       });
     },
     handleSave() {

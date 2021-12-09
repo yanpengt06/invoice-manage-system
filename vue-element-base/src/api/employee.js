@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function setPos(eply) {
     return request({
-      url: '/employee/update',
+      url: '/employee/updatePos',
       method: 'post',
       data : eply
     })
