@@ -181,7 +181,7 @@ export const asyncRoutes = [
     meta: {
       title: '销售员',
       icon: 'el-icon-s-help',
-      roles:['saler','leader']
+      roles:['销售员','店长']
     },
     children: [
       {
@@ -231,7 +231,7 @@ export const asyncRoutes = [
     meta: {
       title: '店长',
       icon: 'el-icon-s-help',
-      roles: ['leader']
+      roles: ['店长']
     },
     children: [
       {
@@ -262,7 +262,7 @@ export const asyncRoutes = [
         path: 'setPos',
         component: () => import('@/views/leader/setPos'),
         name: 'set position',
-        meta: { title: '设定职位', icon: 'list' },
+        meta: { title: '修改职位', icon: 'list' },
       },        
       {
         path: 'showAllEplys',
@@ -286,7 +286,7 @@ export const asyncRoutes = [
     meta: {
       title: '收银员',
       icon: 'el-icon-s-help',
-      roles: ['cashier','leader']
+      roles: ['收银员','店长']
     },
     children: [
       {
@@ -319,7 +319,7 @@ export const asyncRoutes = [
     meta: {
       title: '仓库管理员',
       icon: 'el-icon-s-help',
-      roles: ['wm','leader']
+      roles: ['仓库管理员','店长']
     },
     children: [
       {
@@ -357,6 +357,12 @@ export const asyncRoutes = [
         component: () => import('@/views/wm/deployStock'),
         name: 'deploy',
         meta: { title: '调配库存', icon: 'list' }
+      },
+      {
+        path: 'input',
+        component: () => import('@/views/wm/inputGood'),
+        name: 'input',
+        meta: { title: '进货', icon: 'list' }
       },
     ]
   },

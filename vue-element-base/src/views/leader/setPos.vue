@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { modify } from "@/api/employee";
+import { setPos } from "@/api/employee";
 export default {
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
         type: "warning",
       })
         .then(() => {
-        modify(this.employee).then((response) => {
+        setPos(this.employee).then((response) => {
         if (response.code == 20000) {
           this.$message({
               type: "success",

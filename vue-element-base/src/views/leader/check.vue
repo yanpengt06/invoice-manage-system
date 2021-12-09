@@ -32,7 +32,7 @@
 </template>
 
   <script>
-import { getAllOrderToCheck, passOrder ,refuseOrder} from "@/api/order";;
+import { getAllOrderToCheck, passOrder, refuseOrder } from "@/api/order";
 export default {
   data() {
     return {
@@ -64,7 +64,11 @@ export default {
             type: "success",
             message: "已通过审核",
           });
-        } else {
+          getAllOrderToCheck().then((response) => {
+            this.orders = response.data.items;
+          });
+        } 
+        else {
           this.$message({
             type: "info",
             message: "通过失败",
@@ -78,6 +82,9 @@ export default {
           this.$message({
             type: "success",
             message: "已拒绝",
+          });
+          getAllOrderToCheck().then((response) => {
+            this.orders = response.data.items;
           });
         } else {
           this.$message({

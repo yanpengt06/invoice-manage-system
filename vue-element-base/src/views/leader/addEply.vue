@@ -1,5 +1,6 @@
 <template>
 <el-container> 
+  <el-main>
   <el-form ref="form" :model="rep" label-width="250px" style="margin:100px auto auto 400px">
     <el-form-item label="员工姓名">
       <el-input v-model="eply.name" style="width: 250px"></el-input>
@@ -12,10 +13,7 @@
     </el-form-item>
     <el-form-item label="员工电话">
       <el-input v-model="eply.phone" style="width: 200px"></el-input>
-    </el-form-item>
-    <el-form-item label="员工账号">
-      <el-input v-model="eply.account" style="width: 200px"></el-input>
-    </el-form-item>    
+    </el-form-item>  
     <el-form-item label="员工职位">
       <el-input v-model="eply.position" style="width: 200px"></el-input>
     </el-form-item>
@@ -23,9 +21,11 @@
       <el-button type="primary" @click="onSubmit">添加员工</el-button>
     </el-form-item>
   </el-form>
-<el-main>
-
-</el-main>
+  </el-main>
+  <el-footer>
+  <h3>员工初始账号：{{this.acc.account}}</h3>
+  <h3>员工初始密码：{{this.acc.pwd}}</h3>
+  </el-footer>
 </el-container>
 </template>
 
@@ -40,9 +40,12 @@ export default {
         sex:'男',
         position:'收银员',
         address: '西大直街92号',
-        account: '12166',
         phone: '18912345678'
       },
+      acc:{
+        account: 12166,
+        pwd: 111111
+      }
     };
   },
   methods: {
@@ -59,6 +62,7 @@ export default {
               type: "success",
               message: "添加成功"
           })
+          this.acc = response.data.item;
         }
         else{
             this.$message({

@@ -15,20 +15,20 @@
       </template>
     </el-table-column>
     <el-table-column label="收银">
-      <template slot-scope="scope">      
-      <el-button
-        size="mini"
-        type="success"
-        @click="handleCheckout(scope.row.orderId)"
-        >确认收款
-      </el-button>
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          type="success"
+          @click="handleCheckout(scope.row.orderId)"
+          >确认收款
+        </el-button>
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
-import { getAllOrderToCheck, orderCheckout, getAllOrderToCheckout } from "@/api/order";
+import { orderCheckout, getAllOrderToCheckout } from "@/api/order";
 export default {
   data() {
     return {
@@ -41,9 +41,9 @@ export default {
     };
   },
   created() {
-    getAllOrderToCheckout().then(response =>{
+    getAllOrderToCheckout().then((response) => {
       this.orders = response.data.items;
-    })
+    });
   },
   methods: {
     handleQuery(id) {
@@ -62,7 +62,11 @@ export default {
                 type: "success",
                 message: "收款成功!",
               });
-            } else {
+              getAllOrderToCheckout().then((response) => {
+                this.orders = response.data.items;
+              });
+            } 
+            else {
               this.$message({
                 type: "info",
                 message: "收款失败",

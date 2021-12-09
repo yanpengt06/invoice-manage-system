@@ -31,9 +31,15 @@
             <el-button type="primary" @click="submitForm('dynamicValidateForm')"
             >结账
             </el-button>
+            <el-button type="primary" @click="handlePay(this.order.orderId)"
+            >确认支付
+            </el-button>            
           <el-button @click="addOrderItem(-1)">新增一类商品</el-button>
         </el-form-item>
       </el-form>
+      <h3>
+        本单总价为：{{this.order.total}}
+      </h3>
     </el-aside>
     <el-main>
       <el-form
@@ -68,7 +74,7 @@
   </el-container>
 </template>
 <script>
-import { getOrderDetail, makeOrder, saveOrder,cash } from "@/api/order";
+import { getOrderDetail, makeOrder, saveOrder,cash, pay } from "@/api/order";
 import { searchGoodsByName } from "@/api/good";
 export default {
   data() {
@@ -92,6 +98,11 @@ export default {
           description: "aaa",
         },
       ],
+      order:
+      {
+        orderId:5 ,
+        total: 0
+      }
     };
   },
   created() {
@@ -112,6 +123,7 @@ export default {
                         type: "success",
                         message: "收银成功"
                     })
+                    this.order = response.data.item;
                 }
                 else
                 {
@@ -168,6 +180,15 @@ export default {
         this.goods = response.data.items;
       });
     },
+    handlePay(orderId) {
+      pay(orderId).then(response =>{
+        if(response.code == 20000)
+        this.$message({
+          type: 'success',
+          message: '收款成功'
+        })
+      })
+    }
   },
 };
 </script>

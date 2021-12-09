@@ -43,7 +43,7 @@ export function getAllGoods() {
 
 export function modify(good) {
   return request({
-    url: '/good/update',
+    url: '/good/setPrice',
     method: 'post',
     data: good
   })

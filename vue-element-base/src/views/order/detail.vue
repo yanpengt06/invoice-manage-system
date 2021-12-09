@@ -32,12 +32,12 @@ export default {
   data() {
     return {
       orderItems: [
-        {
-          itemId: 1,
-          goodId: 3,
-          num: 300,
-          orderId: 1,
-        },
+        // {
+        //   itemId: 1,
+        //   goodId: 3,
+        //   num: 300,
+        //   orderId: 1,
+        // },
       ],
       order:{
         orderId:5,

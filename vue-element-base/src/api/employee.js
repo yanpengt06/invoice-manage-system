@@ -1,6 +1,6 @@
 import request from '@/utils/request'  
 
-export function modify(eply) {
+export function setPos(eply) {
     return request({
       url: '/employee/update',
       method: 'post',

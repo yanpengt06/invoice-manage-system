@@ -10,7 +10,7 @@
 
     <el-form-item label="商品简介">
       <el-input
-        v-model="good.desc"
+        v-model="good.description"
         :autosize="{ minRows: 4, maxRows: 8 }"
         type="textarea"
       >
@@ -24,13 +24,12 @@
 
 <script lang="ts">
 import { add } from "@/api/good";
-import { Message } from 'element-ui';
 export default {
   data() {
     return {
       good: {
         name: "",
-        desc: "",
+        description: "",
         inputPrice: 50,
       },
     };

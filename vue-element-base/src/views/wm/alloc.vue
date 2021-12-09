@@ -4,9 +4,9 @@
     </el-table-column>
     <el-table-column prop="time" label="开单时间" width="180">
     </el-table-column>
-    <el-table-column  label="订单状态" width="180">
-      <el-tag type="danger"> 未出库 </el-tag>      
-    </el-table-column>  
+    <el-table-column label="订单状态" width="180">
+      <el-tag type="danger"> 未出库 </el-tag>
+    </el-table-column>
     <el-table-column prop="name" label="操作" width="180">
       <template slot-scope="scope">
         <el-button size="mini" @click="handleQuery(scope.row.orderId)"
@@ -16,7 +16,10 @@
     </el-table-column>
     <el-table-column prop="name" label="出库">
       <template slot-scope="scope">
-        <el-button size="mini" type="success" @click="handleAlc(scope.row.orderId)"
+        <el-button
+          size="mini"
+          type="success"
+          @click="handleAlc(scope.row.orderId)"
           >配货完成
         </el-button>
       </template>
@@ -25,7 +28,7 @@
 </template>
 
   <script>
-import { getAllUnAlcedOrder,alcOrder } from "@/api/order";
+import { getAllUnAlcedOrder, alcOrder } from "@/api/order";
 export default {
   data() {
     return {
@@ -47,14 +50,17 @@ export default {
     handleQuery(id) {
       this.$router.push("/order/detail/" + id);
     },
-    handleAlc(id){
-      alcOrder(id).then(response =>{
+    handleAlc(id) {
+      alcOrder(id).then((response) => {
         this.$message({
-          type:"success",
-          message: "配货完成，订单已完成"
-        })
-      })
-    }
+          type: "success",
+          message: "配货完成，订单已完成",
+        });
+        getAllUnAlcedOrder().then((response) => {
+          this.orders = response.data.items;
+        });
+      });
+    },
   },
 };
 </script>

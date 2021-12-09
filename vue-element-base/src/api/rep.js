@@ -45,13 +45,25 @@ export function getRepItemsByRepId(id) {
 
   export function deploy(repAid,repBid,goodId,num) {
     return request({
-      url: '/repository/deploy',
+      url: '/repositoryItem/deploy',
       method: 'get',
       params: {
         repAid: repAid,
         repBid: repBid,
         goodId: goodId,
         num : num
+      }
+    })
+  }
+
+  export function input(goodId,num,repId) {
+    return request({
+      url: '/repositoryItem/input',
+      method: 'get',
+      params: {
+        goodId:goodId,
+        num:num,
+        repId:repId
       }
     })
   }

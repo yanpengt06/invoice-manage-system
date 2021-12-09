@@ -1,4 +1,13 @@
-<template>  
+<template>
+<el-container>
+<el-header>
+  <el-form ref="form"  label-width="250px" style="margin:100px auto auto 400px">
+    <el-form-item label="请输入批发顾客的id">
+      <el-input v-model="customerId" style="width: 250px"></el-input>
+    </el-form-item>
+  </el-form>
+</el-header>
+<el-main>  
 <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
   <el-form-item
     v-for="(orderItem, index) in dynamicValidateForm.orderItems"
@@ -23,6 +32,8 @@
     <el-button @click="addOrderItem">新增一类商品</el-button>
   </el-form-item>
 </el-form>
+</el-main>
+</el-container>
 </template>
 <script>
   import {getOrderDetail, makeOrder,saveOrder} from '@/api/order' 
@@ -39,7 +50,8 @@
           //   key: date()
           // }
           ],
-        }
+        },
+        customerId: '5'
       };
     },
     created(){
@@ -59,8 +71,8 @@
             {
               id = this.$route.params.id;
             }
-            else id = -1;
-            makeOrder(this.dynamicValidateForm.orderItems,id).then(response =>{
+            else id = '-1';
+            makeOrder(this.dynamicValidateForm.orderItems,id,this.customerId).then(response =>{
               if(response.code == 20000)
                   alert('开单成功，已送审核！');
               else
@@ -98,19 +110,19 @@
           goodId: 0,
           key: Date.now(),
           orderId: orderId,
-          itemId:-1
+          itemId:0
         });
       },
       handleSave(){
         var id ;
         if(!this.$route.params.id)
         {
-           id = -1;
+           id = '-1';
         }
         else{
           id = this.$route.params.id;
         }
-        saveOrder(this.dynamicValidateForm.orderItems,id).then(response =>{
+        saveOrder(this.dynamicValidateForm.orderItems,id,this.customerId).then(response =>{
           if(response.code == 20000)
             alert('保存成功')
           else
