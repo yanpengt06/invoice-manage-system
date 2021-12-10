@@ -13,3 +13,7 @@
 2. 配置src/main/resources/application.properties连接数据库
 3. 在vue-element-admin下命令行输入npm命令:npm run dev,运行开发环境,没有依赖模块按照提示npm install,可能需要换源
 4. 权限及账号密码数据库内可见
+
+## 分工
+- 前端：@type-C
+- 后端：@whdsn123
