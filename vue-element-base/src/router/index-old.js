@@ -56,7 +56,7 @@ export const constantRoutes = [
     path: '/mdyPwd',
     component: () => import('@/views/login/mdfPwd'),
     hidden: true
-  },
+  },  
   {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
@@ -90,7 +90,7 @@ export const constantRoutes = [
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
-    meta: { title: '操作指南', icon: 'guide' },
+    meta: { title: '操作指南', icon: 'guide'},
     children: [
       {
         path: 'index',
@@ -102,8 +102,8 @@ export const constantRoutes = [
         path: 'test',
         component: () => import('@/views/guide/test'),
         name: 'test',
-        meta: { title: '测试用', icon: 'guide' },
-        hidden: true
+        meta: { title: '测试用', icon: 'guide'},
+        hidden:true
       }
     ]
   },
@@ -116,7 +116,7 @@ export const constantRoutes = [
         path: 'detail/:id',
         component: () => import('@/views/order/detail'),
         name: 'show order details',
-        meta: { title: '订单详情', icon: 'guide' },
+        meta: { title: '订单详情', icon: 'guide'},
         hidden: true
       }
     ]
@@ -131,8 +131,8 @@ export const constantRoutes = [
         path: 'detail/:id',
         component: () => import('@/views/good/detail'),
         name: 'show order details',
-        meta: { title: '货品详情', icon: 'guide' },
-        hidden: true
+        meta: { title: '货品详情', icon: 'guide'},
+        hidden:true
       }
     ]
   },
@@ -149,233 +149,6 @@ export const asyncRoutes = [
 
   /** when your routing map is too long, you can split it into small modules **/
 
-  //信息查询
-  {
-    path: '/query',
-    component: Layout,
-    redirect: '/query/allOrder',
-    name: 'Example',
-    meta: {
-      title: '信息查询',
-      icon: 'el-icon-s-help',
-      roles: ['店长', '销售员', '仓库管理员']
-    },
-    children: [
-      {
-        path: 'allOrder',
-        component: () => import('@/views/saler/showOrder'),
-        name: 'show all Order',
-        meta: { title: '订单显示', icon: 'edit', roles: ['销售员', '店长'] }
-      },
-      {
-        path: 'allCustomers',
-        component: () => import('@/views/saler/showAllCustomers'),
-        name: 'show all Customer',
-        meta: { title: '所有客户', icon: 'user', roles: ['店长', '销售员'] }
-      },
-      {
-        path: 'allRep',
-        component: () => import('@/views/leader/showAllRep'),
-        name: 'show all warehouse',
-        meta: { title: '查看仓库', icon: 'list', roles: ['店长', '仓库管理员'] },
-      },
-      {
-        path: 'allEplys',
-        component: () => import('@/views/leader/showAllEplys'),
-        name: 'show all eplys',
-        meta: { title: '所有员工', icon: 'user', roles: ['店长'] },
-      },
-      {
-        path: 'queryByWh',
-        component: () => import('@/views/wm/queryByWh'),
-        name: 'query By warehouse ID',
-        meta: { title: '分仓查询', icon: 'list', roles: ['店长', '仓库管理员'] }
-      },
-    ]
-  },
-
-  //信息录入
-  {
-    path: '/input',
-    component: Layout,
-    redirect: '/input/addCustomer',
-    name: 'Example',
-    meta: {
-      title: '信息录入',
-      icon: 'edit',
-      roles: ['店长', '销售员', '仓库管理员']
-    },
-    children: [
-      {
-        path: 'addCustomer',
-        component: () => import('@/views/saler/addCustomer'),
-        name: 'add Customer',
-        meta: { title: '添加客户信息', icon: 'list', roles: ['店长', '销售员'] }
-      },
-      {
-        path: 'setPrice',
-        component: () => import('@/views/leader/setPrice'),
-        name: 'set Price',
-        meta: { title: '商品定价', icon: 'edit', roles: ['店长'] },
-      },
-      {
-        path: 'addWh',
-        component: () => import('@/views/leader/addWarehouse'),
-        name: 'add a warehouse',
-        meta: { title: '添加仓库', icon: 'el-icon-plus', roles: ['店长'] },
-      },
-      {
-        path: 'setPos',
-        component: () => import('@/views/leader/setPos'),
-        name: 'set position',
-        meta: { title: '设定职位', icon: 'edit', roles: ['店长'] },
-      },
-      {
-        path: 'addEply',
-        component: () => import('@/views/leader/addEply'),
-        name: 'add an employee',
-        meta: { title: '添加员工', icon: 'el-icon-circle-plus', roles: ['店长'] },
-      },
-      {
-        path: 'addGood',
-        component: () => import('@/views/wm/addGood'),
-        name: 'add a good',
-        meta: { title: '添加货品', icon: 'el-icon-circle-plus', roles: ['店长', '仓库管理员'] }
-      },
-    ]
-  },
-
-  //订单处理
-  {
-    path: '/order',
-    component: Layout,
-    redirect: '/order/makeOrder',
-    name: 'Example',
-    meta: {
-      title: '订单处理',
-      icon: 'el-icon-shopping-cart-full',
-      roles: ['店长', '销售员', '仓库管理员', '收银员']
-    },
-    children: [
-      {
-        path: 'makeOrder',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit', roles: ['店长', '销售员'] },
-      },
-      {
-        path: 'makeOrder/:id',
-        component: () => import('@/views/saler/makeOrder'),
-        name: 'make Order',
-        meta: { title: '开销售单', icon: 'edit', roles: ['店长'] },
-        hidden: true
-      },
-      {
-        path: 'check',
-        component: () => import('@/views/leader/check'),
-        name: 'check Order',
-        meta: { title: '审核订单', icon: 'el-icon-view', roles: ['店长'] }
-      },
-      {
-        path: 'checkout',
-        component: () => import('@/views/cashier/checkout'),
-        name: '收银',
-        meta: { title: '开单收银', icon: 'el-icon-coin', roles: ['店长', '收银员'] }
-      },
-      {
-        path: 'cash',
-        component: () => import('@/views/cashier/cash'),
-        name: 'cash',
-        meta: { title: '零售收银', icon: 'el-icon-coin', roles: ['店长', '收银员'] },
-      },
-      {
-        path: 'returnOrder',
-        component: () => import('@/views/saler/returnOrder'),
-        name: 'return Order',
-        meta: { title: '整单退货', icon: 'el-icon-sold-out', roles: ['店长', '销售员'] },
-      },
-      {
-        path: 'alloc',
-        component: () => import('@/views/wm/alloc'),
-        name: 'allocate goods',
-        meta: { title: '配货', icon: 'el-icon-sell', roles: ['店长', '仓库管理员'] }
-      },
-    ]
-  },
-
-  //统计盘点
-
-  {
-    path: '/stat',
-    component: Layout,
-    redirect: '/stat/check',
-    name: 'Example',
-    meta: {
-      title: '统计盘点',
-      icon: 'list',
-      roles: ['店长', '仓库管理员']
-    },
-    children: [
-      {
-        path: 'saleStatistics',
-        component: () => import('@/views/leader/saleStatistics'),
-        name: 'sale statistics',
-        meta: { title: '销售统计', icon: 'list', roles: ['店长'] },
-      },
-      {
-        path: 'saleStatistics/:id',
-        component: () => import('@/views/leader/saleStatistics'),
-        name: 'sale statistics',
-        meta: { title: '销售统计', icon: 'list', roles: ['店长'] },
-        hidden: true
-      },
-      {
-        path: 'fundStatistics',
-        component: () => import('@/views/leader/fundStatistics'),
-        name: 'fund statistics',
-        meta: { title: '资金统计', icon: 'list', roles: ['店长'] },
-      },
-      {
-        path: 'check',
-        component: () => import('@/views/wm/check'),
-        name: 'check goods in the warehouse',
-        meta: { title: '库存盘点', icon: 'el-icon-document-checked', roles: ['店长', '仓库管理员'] }
-      },
-      {
-        path: 'stat',
-        component: () => import('@/views/wm/stat'),
-        name: 'statistic goods in the warehouse',
-        meta: { title: '库存统计', icon: 'list', roles: ['店长', '仓库管理员'] }
-      },
-    ]
-  },
-  //货品管理
-  {
-    path: '/good',
-    component: Layout,
-    redirect: '/good/deployStock',
-    name: 'Example',
-    meta: {
-      title: '货品管理',
-      icon: 'el-icon-goods',
-      roles: ['店长']
-    },
-    children: [
-      {
-        path: 'deployStock',
-        component: () => import('@/views/wm/deployStock'),
-        name: 'deploy',
-        meta: { title: '调配库存', icon: 'el-icon-truck', roles: ['店长', '仓库管理员'] }
-      },
-      {
-        path: 'input',
-        component: () => import('@/views/wm/inputGood'),
-        name: 'input',
-        meta: { title: '进货', icon: 'el-icon-plus', roles: ['店长', '仓库管理员'] }
-      },
-    ]
-  },
-  //公告栏
   {
     path: '/example',
     component: Layout,
@@ -384,20 +157,21 @@ export const asyncRoutes = [
     meta: {
       title: '公告',
       icon: 'el-icon-s-help',
+      roles: ['店长']
     },
-    hidden: true,
     children: [
       {
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: '发布公告', icon: 'edit', roles: ['店长'] }
+        meta: { title: '发布公告', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list', roles: ['店长'] },
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        hidden: true
       },
       {
         path: 'list',
@@ -407,6 +181,219 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/saler',
+    component: Layout,
+    redirect: '/saler/showOrder',
+    name: 'saler',
+    meta: {
+      title: '销售员',
+      icon: 'el-icon-s-help',
+      roles:['销售员','店长']
+    },
+    children: [
+      {
+        path: 'showOrder',
+        component: () => import('@/views/saler/showOrder'),
+        name: 'show Order',
+        meta: { title: '订单显示', icon: 'edit' }
+      },
+      {
+        path: 'makeOrder',
+        component: () => import('@/views/saler/makeOrder'),
+        name: 'make Order',
+        meta: { title: '开销售单', icon: 'edit'},
+      },
+      {
+        path: 'makeOrder/:id',
+        component: () => import('@/views/saler/makeOrder'),
+        name: 'make Order',
+        meta: { title: '开销售单', icon: 'edit'},
+        hidden: true
+      },
+      {
+        path: 'returnOrder',
+        component: () => import('@/views/saler/returnOrder'),
+        name: 'return Order',
+        meta: { title: '整单退货', icon: 'list' }
+      },
+      {
+        path: 'addCustomer',
+        component: () => import('@/views/saler/addCustomer'),
+        name: 'add Customer',
+        meta: { title: '添加客户信息', icon: 'list' }
+      },
+      {
+        path: 'showAllCustomers',
+        component: () => import('@/views/saler/showAllCustomers'),
+        name: 'show all Customer',
+        meta: { title: '所有客户', icon: 'list' }
+      }      
+    ]
+  },
+  {
+    path: '/leader',
+    component: Layout,
+    redirect: '/leader/check',
+    name: 'saler',
+    meta: {
+      title: '店长',
+      icon: 'el-icon-s-help',
+      roles: ['店长']
+    },
+    children: [
+      {
+        path: 'check',
+        component: () => import('@/views/leader/check'),
+        name: 'check Order',
+        meta: { title: '审核订单', icon: 'edit' }
+      },
+      {
+        path: 'setPrice',
+        component: () => import('@/views/leader/setPrice'),
+        name: 'set Price',
+        meta: { title: '商品定价', icon: 'edit'},
+      },
+      {
+        path: 'addWh',
+        component: () => import('@/views/leader/addWarehouse'),
+        name: 'add a warehouse',
+        meta: { title: '添加仓库', icon: 'list' },
+      },
+      {
+        path: 'showAllRep',
+        component: () => import('@/views/leader/showAllRep'),
+        name: 'show all warehouse',
+        meta: { title: '查看仓库', icon: 'list' },
+      },
+      {
+        path: 'setPos',
+        component: () => import('@/views/leader/setPos'),
+        name: 'set position',
+        meta: { title: '修改职位', icon: 'list' },
+      },        
+      {
+        path: 'showAllEplys',
+        component: () => import('@/views/leader/showAllEplys'),
+        name: 'show all eplys',
+        meta: { title: '所有员工', icon: 'list' },
+      },
+      {
+        path: 'addEply',
+        component: () => import('@/views/leader/addEply'),
+        name: 'add an employee',
+        meta: { title: '添加员工', icon: 'list' },
+      },
+      {
+        path: 'saleStatistics',
+        component: () => import('@/views/leader/saleStatistics'),
+        name: 'sale statistics',
+        meta: { title: '销售统计', icon: 'list' },
+      },
+      {
+        path: 'saleStatistics/:id',
+        component: () => import('@/views/leader/saleStatistics'),
+        name: 'sale statistics',
+        meta: { title: '销售统计', icon: 'list' },
+        hidden: true
+      },
+      {
+        path: 'fundStatistics',
+        component: () => import('@/views/leader/fundStatistics'),
+        name: 'fund statistics',
+        meta: { title: '资金统计', icon: 'list' },
+      }      
+    ]
+  },
+  {
+    path: '/cashier',
+    component: Layout,
+    redirect: '/cashier/checkout',
+    name: 'saler',
+    meta: {
+      title: '收银员',
+      icon: 'el-icon-s-help',
+      roles: ['收银员','店长']
+    },
+    children: [
+      {
+        path: 'checkout',
+        component: () => import('@/views/cashier/checkout'),
+        name: '收银',
+        meta: { title: '开单收银', icon: 'edit' }
+      },
+      {
+        path: 'cash',
+        component: () => import('@/views/cashier/cash'),
+        name: 'cash',
+        meta: { title: '零售收银', icon: 'edit'},
+      },
+      {
+        path: 'returnOrder',
+        component: () => import('@/views/saler/returnOrder'),
+        name: 'return Order',
+        meta: { title: '整单退货', icon: 'list' },
+        hidden: true
+      }
+    ]
+  },
+
+  {
+    path: '/wm',
+    component: Layout,
+    redirect: '/wm/alloc',
+    name: 'saler',
+    meta: {
+      title: '仓库管理员',
+      icon: 'el-icon-s-help',
+      roles: ['仓库管理员','店长']
+    },
+    children: [
+      {
+        path: 'alloc',
+        component: () => import('@/views/wm/alloc'),
+        name: 'allocate goods',
+        meta: { title: '配货', icon: 'edit' }
+      },
+      {
+        path: 'addGood',
+        component: () => import('@/views/wm/addGood'),
+        name: 'add a good',
+        meta: { title: '添加货品', icon: 'edit'}
+      },
+      {
+        path: 'check',
+        component: () => import('@/views/wm/check'),
+        name: 'check goods in the warehouse',
+        meta: { title: '库存盘点', icon: 'list' }
+      },
+      {
+        path: 'stat',
+        component: () => import('@/views/wm/stat'),
+        name: 'statistic goods in the warehouse',
+        meta: { title: '库存统计', icon: 'list' }
+      },
+      {
+        path: 'queryByWh',
+        component: () => import('@/views/wm/queryByWh'),
+        name: 'query By warehouse ID',
+        meta: { title: '分仓查询', icon: 'list' }
+      },
+      {
+        path: 'deployStock',
+        component: () => import('@/views/wm/deployStock'),
+        name: 'deploy',
+        meta: { title: '调配库存', icon: 'list' }
+      },
+      {
+        path: 'input',
+        component: () => import('@/views/wm/inputGood'),
+        name: 'input',
+        meta: { title: '进货', icon: 'list' }
+      },
+    ]
+  },
+
 
   {
     path: '/error',

@@ -11,13 +11,16 @@
     </el-table-column>
     <el-table-column prop="num" label="个数" width="180"> </el-table-column>
     <el-table-column prop="num" label="操作">
+      <template slot-scope="scope">      
       <el-button size="mini" @click="handleQuery(scope.row.goodId)"
         >查看详情
       </el-button>
+      </template>
     </el-table-column>
   </el-table>
 <div id="total">
     <h3>总价：{{order.total}}</h3>
+    <h3>本单毛利润：{{order.profit}}</h3>
 </div>
 
 </div>
@@ -41,7 +44,8 @@ export default {
       ],
       order:{
         orderId:5,
-        total: 100
+        total: 100,
+        profit: 200
       },
       name : 'a'
     };
@@ -56,7 +60,7 @@ export default {
   },
   methods: {
     handleQuery(goodId) {
-      this.$router.push();
+      this.$router.push("/good/detail/" + goodId);
     },
      getGoodName(id){
        queryGoodById(id).then(response =>{

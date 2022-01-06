@@ -41,9 +41,12 @@ export function saveOrder(orderItems,id,customerId) {
 
 export function returnOrder(id) {
   return request({
-    url: '/order/delById',
+    url: '/order/updateState',
     method: 'get',
-    params: {id:id} 
+    params: {
+      order_id:id,
+      newState:"已退货"
+    } 
   })
 }
 
@@ -138,5 +141,46 @@ export function pay(orderId) {
     params: {
       orderId:orderId
     }
+  })
+}
+
+export function custmStatistics(id) {
+  return request({
+    url: '/orderItem/custmStatistics',                
+    method: 'get',
+    params: {
+      id:id
+    }
+  })
+}
+
+export function goodStatistics(id) {
+  return request({
+    url: '/orderItem/goodStatistics',                
+    method: 'get',
+    params: {
+      id:id
+    }
+  })
+}
+
+export function fundStatistics() {
+  return request({
+    url: '/orderItem/fundStatistics',                
+    method: 'get'
+  })
+}
+
+export function getTotalProfit() {
+  return request({
+    url: '/order/totalProfit',                
+    method: 'get'
+  })
+}
+
+export function getTotalSale() {
+  return request({
+    url: '/order/totalSale',                
+    method: 'get'
   })
 }

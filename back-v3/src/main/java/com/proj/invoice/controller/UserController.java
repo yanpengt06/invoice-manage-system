@@ -92,4 +92,16 @@ public class UserController {
         return R.ok();
     }
 
+    //TODO
+    @GetMapping("/user/mdfPwd")
+    public R mdfPwd(@RequestParam long username,@RequestParam String pwd,@RequestParam String newPwd)
+    {
+        aUser aUser=userMapper.selectById(username);
+        if(aUser!=null&&aUser.getPwd().equals(pwd)){
+            aUser.setPwd(newPwd);
+            return update(aUser);
+        }
+        return R.ok().success(Boolean.FALSE);
+    }
+
 }

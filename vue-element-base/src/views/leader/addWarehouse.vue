@@ -1,6 +1,6 @@
 <template>
 <el-container> 
-  <el-form ref="form" :model="rep" label-width="250px" style="margin:100px auto auto 400px">
+  <el-form ref="form" :model="rep" label-width="250px" style="margin:100px auto auto 300px">
     <el-form-item label="仓库类别(门店仓库/大库)">
       <el-input v-model="rep.classification" style="width: 250px"></el-input>
     </el-form-item>

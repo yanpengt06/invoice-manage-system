@@ -8,9 +8,9 @@ public class Good {
   private long id;
   private String name;
   private String description;
+  private double wholesalePrice;
   private double inputPrice;
   private double retailPrice;
-  private double wholesalePrice;
 
 
   public long getId() {

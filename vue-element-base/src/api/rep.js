@@ -67,3 +67,14 @@ export function getRepItemsByRepId(id) {
       }
     })
   }
+
+  
+  export function delRep(id) {
+    return request({
+      url: '/repository/delById',
+      method: 'get',
+      params: {
+        id:id
+      }
+    })
+  }

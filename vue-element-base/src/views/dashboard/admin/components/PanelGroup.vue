@@ -7,9 +7,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            员工总数
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="this.emplyNum" :duration="4000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,9 +20,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            货品总数
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="this.goodNum" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -33,9 +33,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Purchases
+            总销售额
           </div>
-          <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="this.totalSale" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,9 +46,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+            总利润
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="this.totalProfit" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -57,16 +57,43 @@
 
 <script>
 import CountTo from 'vue-count-to'
+import {getEmplyNum} from '@/api/employee'
+import {getGoodNum} from '@/api/good'
+import {getTotalProfit} from '@/api/order'
+import {getTotalSale} from '@/api/order'
 
 export default {
   components: {
     CountTo
   },
+  mounted() {
+    getEmplyNum().then(res =>{
+      this.emplyNum = res.data.item
+    });
+    getGoodNum().then(res =>{
+      this.goodNum = res.data.item
+    })
+    getTotalProfit().then(res =>{
+      this.totalProfit = res.data.item
+    })  
+    getTotalSale().then(res =>{
+      this.totalSale = res.data.item
+    })           
+  },  
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
-    }
-  }
+    },
+  },
+  data() {
+    return {
+      emplyNum: 5,
+      goodNum: 10,
+      totalProfit: 1000,
+      totalSale:5000
+    };
+  },
+
 }
 </script>
 

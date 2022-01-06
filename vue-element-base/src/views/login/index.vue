@@ -55,8 +55,8 @@
           <span>密码长度应大于6位</span>
         </div>
 
-        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-            其他方式
+        <el-button class="thirdparty-button" type="primary" @click="handleMdyPwd()">
+            修改密码
         </el-button>
       </div>
     </el-form>
@@ -175,7 +175,10 @@ export default {
         }
         return acc
       }, {})
-    }
+    },
+    handleMdyPwd() {
+        this.$router.push("/mdyPwd")
+    }    
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
     //     const code = getQueryObject(e.newValue)

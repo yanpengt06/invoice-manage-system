@@ -22,3 +22,20 @@ export function addEply(eply) {
     data: eply
   })
 }
+
+export function delEmply(id) {
+  return request({
+    url: '/employee/delById',
+    method: 'get',
+    params:{
+      id:id
+    }
+  })
+}
+
+export function getEmplyNum() {
+  return request({
+    url: '/employee/count',
+    method: 'get',
+  })
+}

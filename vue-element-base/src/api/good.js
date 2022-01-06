@@ -41,6 +41,14 @@ export function getAllGoods() {
   })
 }
 
+export function getGoodNum() {
+  return request({
+    url: '/good/count',
+    method: 'get',
+  })
+}
+
+
 export function modify(id,retail,wholesale) {
   return request({
     url: '/good/setPrice',

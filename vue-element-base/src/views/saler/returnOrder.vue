@@ -6,8 +6,9 @@
         :label-position="labelPosition"
         label-width="80px"
         :model="formLabelAlign"
+        :rules="rules"
       >
-        <el-form-item label="退货订单号">
+        <el-form-item label="退货订单号" prop="orderId">
           <el-input
             v-model="formLabelAlign.orderId"
             style="width: 500px"
@@ -24,11 +25,28 @@
 import { returnOrder } from "@/api/order";
 export default {
   data() {
+    var validateID = (rule, value, callback) => {
+        if(!value)
+        {
+          callback(new Error("订单号不能为空"))
+        }
+        else if(!(/(^[1-9]\d*$)/.test(value)))
+        {
+          callback(new Error("ID值非法"))
+        }
+        else
+        {
+          callback()
+        }
+    };
     return {
       labelPosition: "top",
       formLabelAlign: {
         orderId: 5,
       },
+      rules : {
+          orderId:[{validator: validateID, trigger: "blur"}]
+      }
     };
   },
   methods: {

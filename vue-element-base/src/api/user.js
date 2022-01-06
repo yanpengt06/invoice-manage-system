@@ -21,3 +21,15 @@ export function logout() {
   removeToken()
   return this.$router.push({path:'/login'});
 }
+
+export function mdfPwd(username,pwd,newPwd) {
+  return request({
+    url: '/user/mdfPwd',
+    method: 'get',
+    params: { 
+      username:username,
+      pwd:pwd,
+      newPwd:newPwd
+     }
+  })
+}

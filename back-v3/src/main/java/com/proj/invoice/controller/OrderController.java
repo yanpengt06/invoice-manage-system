@@ -61,8 +61,8 @@ public class OrderController {
             OrderItem orderItem= it.next();
 
             Good good=goodMapper.selectById(orderItem.getGoodId());
-            total+=good.getWholesalePrice();
-            profit+=good.getWholesalePrice()-good.getInputPrice();
+            total+=good.getRetailPrice()*orderItem.getNum();
+            profit+=(good.getRetailPrice()-good.getInputPrice())*orderItem.getNum();
 
         }
         aOrder.setTotal(total);
@@ -104,6 +104,20 @@ public class OrderController {
     @GetMapping("/order/updateState")
     public R updateState(@RequestParam long order_id,@RequestParam String newState){
         aOrder order=orderMapper.selectById(order_id);
+        if(order.getState().equals("待审核")&&newState.equals("已保存")){
+            for(OrderItem orderItem:orderItemMapper.selectList(new QueryWrapper<OrderItem>().eq("order_id",order_id))){
+                RepositoryItem repositoryItem=repositoryItemMapper.selectOne(new QueryWrapper<RepositoryItem>().eq("repository_id",1).eq("good_id",orderItem.getGoodId()));
+                repositoryItem.setNum(repositoryItem.getNum()+orderItem.getNum());
+                repositoryItemMapper.updateById(repositoryItem);
+            }
+        }
+        if(order.getState().equals("已完成")&&newState.equals("已退货")){
+            for(OrderItem orderItem:orderItemMapper.selectList(new QueryWrapper<OrderItem>().eq("order_id",order_id))){
+                RepositoryItem repositoryItem=repositoryItemMapper.selectOne(new QueryWrapper<RepositoryItem>().eq("repository_id",1).eq("good_id",orderItem.getGoodId()));
+                repositoryItem.setNum(repositoryItem.getNum()+orderItem.getNum());
+                repositoryItemMapper.updateById(repositoryItem);
+            }
+        }
         order.setState(newState);
         int i=orderMapper.updateById(order);
         if(i>0){
@@ -149,8 +163,8 @@ public class OrderController {
                     OrderItem orderItem= it.next();
 
                     Good good=goodMapper.selectById(orderItem.getGoodId());
-                    total+=good.getRetailPrice();
-                    profit+=good.getRetailPrice()-good.getInputPrice();
+                    total+=good.getWholesalePrice()*orderItem.getNum();
+                    profit+=(good.getWholesalePrice()-good.getInputPrice())*orderItem.getNum();
             }
             aOrder.setTotal(total);
             aOrder.setProfit(profit);
@@ -169,8 +183,8 @@ public class OrderController {
                 OrderItem orderItem= it.next();
                 orderItemMapper.insert(orderItem);
                 Good good=goodMapper.selectById(orderItem.getGoodId());
-                total+=good.getRetailPrice();
-                profit+=good.getRetailPrice()-good.getInputPrice();
+                total+=good.getRetailPrice()*orderItem.getNum();
+                profit+=(good.getRetailPrice()-good.getInputPrice())*orderItem.getNum();
             }
             //aOrder.setTime(time);
             aOrder.setTotal(total);
@@ -205,8 +219,8 @@ public class OrderController {
                 OrderItem orderItem= it.next();
                 //orderItemMapper.insert(orderItem);
                 Good good=goodMapper.selectById(orderItem.getGoodId());
-                total+=good.getRetailPrice();
-                profit+=good.getRetailPrice()-good.getInputPrice();
+                total+=good.getWholesalePrice()*orderItem.getNum();
+                profit+=(good.getWholesalePrice()-good.getInputPrice())*orderItem.getNum();
                 RepositoryItem repositoryItem=repositoryItemMapper.selectOne(new QueryWrapper<RepositoryItem>().eq("repository_id",1).eq("good_id",good.getId()));
                 repositoryItem.setNum(repositoryItem.getNum()-orderItem.getNum());
                 repositoryItemMapper.updateById(repositoryItem);
@@ -228,8 +242,8 @@ public class OrderController {
                 OrderItem orderItem= it.next();
                 orderItemMapper.insert(orderItem);
                 Good good=goodMapper.selectById(orderItem.getGoodId());
-                total+=good.getRetailPrice();
-                profit+=good.getRetailPrice()-good.getInputPrice();
+                total+=good.getRetailPrice()*orderItem.getNum();
+                profit+=(good.getRetailPrice()-good.getInputPrice())*orderItem.getNum();
                 RepositoryItem repositoryItem=repositoryItemMapper.selectOne(new QueryWrapper<RepositoryItem>().eq("repository_id",1).eq("good_id",good.getId()));
                 repositoryItem.setNum(repositoryItem.getNum()-orderItem.getNum());
                 repositoryItemMapper.updateById(repositoryItem);
@@ -291,5 +305,27 @@ public class OrderController {
     @RequestMapping("/order/all")
     public R all(){
         return itemService.all(new aOrder());
+    }
+
+    //TODO
+    @RequestMapping("/order/totalSale")
+    public R totalSale(){
+        List<aOrder> list=orderMapper.selectList(new QueryWrapper<aOrder>().eq("state","已完成"));
+        double totalSale=0;
+        for(aOrder aOrder:list){
+            totalSale+=aOrder.getTotal();
+        }
+        return R.ok().data("item",totalSale);
+    }
+
+    //TODO
+    @RequestMapping("/order/totalProfit")
+    public R totalProfit(){
+        List<aOrder> list=orderMapper.selectList(new QueryWrapper<aOrder>().eq("state","已完成"));
+        double totalProfit=0;
+        for(aOrder aOrder:list){
+            totalProfit+=aOrder.getProfit();
+        }
+        return R.ok().data("item",totalProfit);
     }
 }

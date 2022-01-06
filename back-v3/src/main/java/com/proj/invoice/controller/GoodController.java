@@ -2,6 +2,7 @@ package com.proj.invoice.controller;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.proj.invoice.bean.Employee;
 import com.proj.invoice.bean.Good;
 import com.proj.invoice.bean.GoodNew;
 import com.proj.invoice.bean.RepositoryItem;
@@ -113,5 +114,12 @@ public class GoodController {
             list_goodNew.add(new GoodNew(good.getId(),good.getName(),good.getDescription(),good.getInputPrice(),good.getRetailPrice(),good.getWholesalePrice(),sum));
         }
         return R.ok().data("items",list_goodNew);
+    }
+
+    //TODO
+    @RequestMapping("/good/count")
+    public R count(){
+        int count=goodMapper.selectCount(new QueryWrapper<>());
+        return R.ok().data("item",count);
     }
 }

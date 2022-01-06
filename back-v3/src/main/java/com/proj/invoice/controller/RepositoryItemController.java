@@ -2,12 +2,10 @@ package com.proj.invoice.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.proj.invoice.bean.Good;
-import com.proj.invoice.bean.GoodNew;
-import com.proj.invoice.bean.OrderItem;
-import com.proj.invoice.bean.RepositoryItem;
+import com.proj.invoice.bean.*;
 import com.proj.invoice.mapper.GoodMapper;
 import com.proj.invoice.mapper.RepositoryItemMapper;
+import com.proj.invoice.mapper.RepositoryMapper;
 import com.proj.invoice.service.ItemService;
 import com.proj.invoice.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -125,5 +125,24 @@ public class RepositoryItemController {
             return update(repositoryItem);
         }
         return R.error();
+    }
+
+    @Autowired
+    RepositoryMapper repositoryMapper;
+    //TODO
+    @RequestMapping("/repositoryItem/count")
+    public R count(){
+        List<Repository> list_repository=repositoryMapper.selectList(new QueryWrapper<Repository>());
+        Map<Long,Long> map=new HashMap<>();
+        for(Repository repository:list_repository){
+            long repositoryId=repository.getRepositoryId();
+            long count=0;
+            List<RepositoryItem> list_repositoryItem=repositoryItemMapper.selectList(new QueryWrapper<RepositoryItem>().eq("repository_id",repositoryId));
+            for(RepositoryItem repositoryItem:list_repositoryItem){
+                count+=repositoryItem.getNum();
+            }
+            map.put(repositoryId,count);
+        }
+        return R.ok().data("items",map);
     }
 }

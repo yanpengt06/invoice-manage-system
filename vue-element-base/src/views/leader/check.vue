@@ -2,9 +2,7 @@
   <el-table :data="orders" style="width: 100%">
     <el-table-column prop="orderId" label="订单编号" width="180">
     </el-table-column>
-    <el-table-column prop="salerId" label="开单销售员编号" width="180">
-    </el-table-column>
-    <el-table-column prop="time" label="开单时间" width="180">
+    <el-table-column prop="time" label="开单时间" width="360">
     </el-table-column>
     <el-table-column prop="customerId" label="客户id" width="180">
     </el-table-column>

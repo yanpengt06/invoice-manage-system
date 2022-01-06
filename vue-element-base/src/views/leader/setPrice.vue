@@ -1,13 +1,13 @@
 <template>
 <el-container> 
-  <el-form ref="form" :model="good" label-width="120px" style="margin:100px auto auto 500px">
-    <el-form-item label="商品Id">
+  <el-form ref="form" :model="good" label-width="120px" style="margin:100px auto auto 500px" :rules="rules">
+    <el-form-item label="商品Id" prop="id">
       <el-input v-model="good.id" style="width: 250px"></el-input>
     </el-form-item>
-    <el-form-item label="商品零售价">
+    <el-form-item label="商品零售价" prop="retailPrice">
       <el-input v-model="good.retailPrice" style="width: 200px"></el-input>
     </el-form-item>
-    <el-form-item label="商品批发价">
+    <el-form-item label="商品批发价" prop="wholesalePrice"> 
       <el-input v-model="good.wholesalePrice" style="width: 200px"></el-input>
     </el-form-item>
     <el-form-item>
@@ -24,12 +24,45 @@
 import { modify } from "@/api/good";
 export default {
   data() {
+    var validateInt = (rule, value, callback) => {
+        if(!value)
+        {
+          callback(new Error("此处不能为空"))
+        }
+        else if(!(/(^[1-9]\d*$)/.test(value)))
+        {
+          callback(new Error("ID值非法"))
+        }
+        else
+        {
+          callback()
+        }
+    };  
+    var validateNum = (rule, value, callback) => {
+        if(!value)
+        {
+          callback(new Error("此处不能为空"))
+        }
+        else if(isNaN(value))
+        {
+          callback(new Error("不是一个合法数字"))
+        }
+        else
+        {
+          callback()
+        }
+    };      
     return {
       good: {
         id: 5,
         retailPrice: 60,
         wholesalePrice: 55
       },
+      rules: {
+        id: [{validator: validateInt, trigger: "blur"}],
+        retailPrice: [{validator: validateNum, trigger: "blur"}],
+        wholesalePrice: [{validator: validateNum, trigger: "blur"}],
+      }
     };
   },
   methods: {
