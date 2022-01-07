@@ -78,3 +78,10 @@ export function getRepItemsByRepId(id) {
       }
     })
   }
+
+  export function countReps() {
+    return request({
+      url: '/repositoryItem/count',
+      method: 'get',
+    })
+  }  

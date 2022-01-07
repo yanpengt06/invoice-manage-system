@@ -12,6 +12,7 @@
           <el-input
             v-model="formLabelAlign.orderId"
             style="width: 500px"
+            placeholder="请输入订单ID"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -42,7 +43,7 @@ export default {
     return {
       labelPosition: "top",
       formLabelAlign: {
-        orderId: 5,
+        orderId: "",
       },
       rules : {
           orderId:[{validator: validateID, trigger: "blur"}]

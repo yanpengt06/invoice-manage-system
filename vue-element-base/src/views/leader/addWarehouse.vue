@@ -5,10 +5,10 @@
       <el-input v-model="rep.classification" style="width: 250px"></el-input>
     </el-form-item>
     <el-form-item label="仓库地址">
-      <el-input v-model="rep.address" style="width: 200px"></el-input>
+      <el-input v-model="rep.address" style="width: 200px" placeholder="请输入仓库地址"></el-input>
     </el-form-item>
     <el-form-item label="仓库电话">
-      <el-input v-model="rep.phone" style="width: 200px"></el-input>
+      <el-input v-model="rep.phone" style="width: 200px" placeholder="请输入仓库电话"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">添加仓库</el-button>
@@ -27,8 +27,8 @@ export default {
     return {
       rep: {
         classification: '大库',
-        address: '西大直街92号',
-        phone: '18912345678'
+        address: '',
+        phone: ''
       },
     };
   },

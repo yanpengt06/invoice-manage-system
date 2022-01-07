@@ -1,11 +1,11 @@
 <template>
 <el-container>
   <el-header>
-  <h3 style="margin-left: 600px">
+  <h3 style="margin-left: 500px">
     从A库往B库调货
   </h3> 
   </el-header>
-  <el-form ref="form"  label-width="250px" style="margin:100px auto auto 400px">
+  <el-form ref="form"  label-width="250px" style="margin:100px auto auto 300px">
     <el-form-item label="A库id">
       <el-input v-model="repAid" style="width: 250px"></el-input>
     </el-form-item>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50729
 File Encoding         : 65001
 
-Date: 2022-01-06 16:51:25
+Date: 2022-01-07 09:53:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,7 +51,7 @@ INSERT INTO `a_order` VALUES ('42', '待审核', '2022-01-06 12:20:40', '6', '50
 INSERT INTO `a_order` VALUES ('43', '待支付', '2022-01-06 12:21:48', '0', '5.00', '15.00');
 INSERT INTO `a_order` VALUES ('44', '待支付', '2022-01-06 12:24:30', '0', '100.00', '200.00');
 INSERT INTO `a_order` VALUES ('45', '已完成', '2022-01-06 12:28:26', '0', '100.00', '200.00');
-INSERT INTO `a_order` VALUES ('46', '已完成', '2022-01-06 12:30:12', '0', '100.00', '200.00');
+INSERT INTO `a_order` VALUES ('46', '已退货', '2022-01-06 12:30:12', '0', '100.00', '200.00');
 INSERT INTO `a_order` VALUES ('47', '待出库', '2022-01-06 12:30:37', '0', '100.00', '200.00');
 INSERT INTO `a_order` VALUES ('48', '已完成', '2022-01-06 12:31:27', '6', '50.00', '150.00');
 INSERT INTO `a_order` VALUES ('49', '待出库', '2022-01-06 16:33:05', '6', '-83.00', '30.00');
@@ -64,7 +64,7 @@ CREATE TABLE `a_user` (
   `account` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pwd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`account`)
-) ENGINE=InnoDB AUTO_INCREMENT=12145 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12147 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of a_user
@@ -77,6 +77,7 @@ INSERT INTO `a_user` VALUES ('12141', '111111');
 INSERT INTO `a_user` VALUES ('12142', '111111');
 INSERT INTO `a_user` VALUES ('12143', '111111');
 INSERT INTO `a_user` VALUES ('12144', '111111');
+INSERT INTO `a_user` VALUES ('12145', '111111');
 
 -- ----------------------------
 -- Table structure for customer
@@ -115,7 +116,7 @@ CREATE TABLE `employee` (
   `age` int(11) DEFAULT NULL,
   `sex` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of employee
@@ -125,6 +126,7 @@ INSERT INTO `employee` VALUES ('5', '12138', '仓库管理员', '张三', '18912
 INSERT INTO `employee` VALUES ('6', '12139', '销售员', '李四', '18912345678', '44', '男');
 INSERT INTO `employee` VALUES ('8', '12141', '收银员', '王五', '18912345678', '45', '男');
 INSERT INTO `employee` VALUES ('11', '12144', '销售员', '张四', '18912345678', '45', '男');
+INSERT INTO `employee` VALUES ('12', '12145', '销售员', '张大炮', '12345678945', '25', '男');
 
 -- ----------------------------
 -- Table structure for good
@@ -147,7 +149,7 @@ INSERT INTO `good` VALUES ('1', 'sad', 'asd', '20.00', '20.10', '30.10');
 INSERT INTO `good` VALUES ('8', '铅笔', '这是另一根铅笔', '5.00', '7.00', '8.00');
 INSERT INTO `good` VALUES ('9', '铅笔', '这是一根铅笔', '4.00', '10.00', '8.00');
 INSERT INTO `good` VALUES ('10', '笔记本-蓝', 'x1234', '10.00', '20.00', '15.00');
-INSERT INTO `good` VALUES ('11', '笔记本-蓝', 'x12345', '31.00', '0.00', '0.00');
+INSERT INTO `good` VALUES ('11', '笔记本-蓝', 'x12345', '31.00', '40.00', '35.00');
 INSERT INTO `good` VALUES ('12', '尺子-长', '长尺子', '2.00', '0.00', '0.00');
 INSERT INTO `good` VALUES ('13', '尺子-短', '短尺子', '1.00', '0.00', '0.00');
 INSERT INTO `good` VALUES ('14', '钢笔', '这是一根钢笔', '50.00', '0.00', '0.00');
@@ -204,12 +206,13 @@ CREATE TABLE `repository` (
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`repository_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of repository
 -- ----------------------------
-INSERT INTO `repository` VALUES ('2', '大库', '西大直街91#', '1234567');
+INSERT INTO `repository` VALUES ('1', '大库', '黄河路90号', '13066666666');
+INSERT INTO `repository` VALUES ('2', '门店', '西大直街91#', '1234567');
 INSERT INTO `repository` VALUES ('4', '大库', '西大直街92号', '18912345678');
 INSERT INTO `repository` VALUES ('6', '门店', '西大直街92号', '18912345678');
 INSERT INTO `repository` VALUES ('7', '门店', '西大直街98号', '18912345678');
@@ -224,22 +227,21 @@ CREATE TABLE `repository_item` (
   `good_id` bigint(20) DEFAULT NULL,
   `num` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of repository_item
 -- ----------------------------
-INSERT INTO `repository_item` VALUES ('1', '1', '8', '96');
-INSERT INTO `repository_item` VALUES ('3', '1', '9', '141');
 INSERT INTO `repository_item` VALUES ('4', '4', '10', '105');
 INSERT INTO `repository_item` VALUES ('5', '5', '10', '26');
 INSERT INTO `repository_item` VALUES ('6', '2', '8', '140');
 INSERT INTO `repository_item` VALUES ('7', '2', '9', '147');
-INSERT INTO `repository_item` VALUES ('8', '1', '10', '24');
-INSERT INTO `repository_item` VALUES ('9', null, null, null);
-INSERT INTO `repository_item` VALUES ('10', null, null, null);
-INSERT INTO `repository_item` VALUES ('11', '1', '11', '469');
+INSERT INTO `repository_item` VALUES ('11', '1', '11', '465');
 INSERT INTO `repository_item` VALUES ('12', '1', '12', '300');
 INSERT INTO `repository_item` VALUES ('13', '1', '13', '200');
 INSERT INTO `repository_item` VALUES ('14', '2', '10', '173');
-INSERT INTO `repository_item` VALUES ('15', '2', '11', '196');
+INSERT INTO `repository_item` VALUES ('15', '2', '11', '200');
+INSERT INTO `repository_item` VALUES ('19', '1', '10', '111');
+INSERT INTO `repository_item` VALUES ('20', '4', '8', '500');
+INSERT INTO `repository_item` VALUES ('21', '6', '8', '500');
+INSERT INTO `repository_item` VALUES ('22', '7', '8', '500');

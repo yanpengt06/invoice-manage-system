@@ -9,17 +9,18 @@
       @keyup.enter.native="onSubmit"
     >
       <el-form-item label="顾客姓名">
-        <el-input v-model="customer.name" style="width: 250px"></el-input>
+        <el-input v-model="customer.name" style="width: 250px" placeholder="请输入顾客姓名"></el-input>
       </el-form-item>
-      <el-form-item label="顾客电话" prop="phone">
+      <el-form-item label="顾客电话" prop="phone" >
         <el-input
           v-model="customer.phone"
           style="width: 200px"
           @keyup.capture.enter="onSubmit"
+          placeholder="请输入顾客电话"
         ></el-input>
       </el-form-item>
       <el-form-item label="送货地址">
-        <el-input v-model="customer.address" style="width: 200px"></el-input>
+        <el-input v-model="customer.address" style="width: 200px" placeholder="请输入送货地址"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" @>添加顾客</el-button>
@@ -57,9 +58,9 @@ export default {
     };
     return {
       customer: {
-        name: "张三",
-        address: "西大直街92号",
-        phone: "18912345678",
+        name: "",
+        address: "",
+        phone: "",
       },
       rules: {
         phone: [{ validator: validatePhone, trigger: "blur" }],

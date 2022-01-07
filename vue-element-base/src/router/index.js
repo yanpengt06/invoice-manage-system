@@ -375,7 +375,7 @@ export const asyncRoutes = [
       },
     ]
   },
-  //公告栏
+  //公告栏          ...不想写了，学别的去了
   {
     path: '/example',
     component: Layout,

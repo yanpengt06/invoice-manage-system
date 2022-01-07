@@ -7,7 +7,7 @@
         style="margin-left:400px"
       >
         <el-form-item label="请输入仓库ID：">
-          <el-input v-model="repId" style="width: 200px"></el-input>
+          <el-input v-model="repId" style="width: 200px" placeholder="请输入仓库ID"></el-input>
         </el-form-item>
       </el-form>
       <el-button
@@ -19,7 +19,7 @@
     </el-header>
     <el-main style="margin-top : 50px">
       <el-table :data="goods" style="width: 100%">
-        <el-table-column prop="id" label="货品ID" width="360">
+        <el-table-column prop="id" label="货品ID" width="200">
         </el-table-column>
         <el-table-column prop="name" label="货品名称" width="360">
         </el-table-column>
@@ -50,7 +50,7 @@ export default {
           totalNum: 500,
         },
       ],
-      repId: 55
+      repId: 1
     };
   },
   created() {

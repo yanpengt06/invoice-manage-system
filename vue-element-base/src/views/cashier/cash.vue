@@ -48,7 +48,7 @@
         :model="formLabelAlign"
       >
         <el-form-item label="请输入商品名称：">
-          <el-input v-model="goodName" style="width: 200px"></el-input>
+          <el-input v-model="goodName" style="width: 200px" placeholder="请输入商品名称"></el-input>
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="handleSearch()" style="margin-left: 200px">搜索</el-button>
@@ -90,7 +90,7 @@ export default {
           // }
         ],
       },
-      goodName: "a",
+      goodName: "",
       goods: [
         {
           id: 5,

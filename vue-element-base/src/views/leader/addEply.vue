@@ -1,18 +1,20 @@
 <template>
 <el-container> 
   <el-main>
-  <el-form ref="form" :model="rep" label-width="250px" style="margin:100px auto auto 400px">
+  <el-form ref="form" :model="rep" label-width="250px" style="margin:100px auto auto 300px">
     <el-form-item label="员工姓名">
-      <el-input v-model="eply.name" style="width: 250px"></el-input>
+      <el-input v-model="eply.name" style="width: 250px" placeholder="请输入员工姓名"></el-input>
     </el-form-item>
     <el-form-item label="员工性别">
-      <el-input v-model="eply.sex" style="width: 200px"></el-input>
+      <!-- <el-input v-model="eply.sex" style="width: 200px"></el-input> -->
+      <el-radio v-model="eply.sex" label="男">男</el-radio>
+      <el-radio v-model="eply.sex" label="女">女</el-radio>  
     </el-form-item>
     <el-form-item label="员工年龄">
-      <el-input v-model="eply.age" style="width: 200px"></el-input>
+      <el-input v-model="eply.age" style="width: 200px" placeholder="请输入员工年龄"></el-input>
     </el-form-item>
     <el-form-item label="员工电话">
-      <el-input v-model="eply.phone" style="width: 200px"></el-input>
+      <el-input v-model="eply.phone" style="width: 200px" placeholder="请输入员工电话"></el-input>
     </el-form-item>  
     <el-form-item label="员工职位">
       <el-input v-model="eply.position" style="width: 200px"></el-input>
@@ -35,12 +37,12 @@ export default {
   data() {
     return {
       eply: {
-        name: '张三',
-        age:45,
-        sex:'男',
-        position:'收银员',
-        address: '西大直街92号',
-        phone: '18912345678'
+        name: '',
+        age:'',
+        sex:'女',
+        position:'销售员',
+        address: '',
+        phone: ''
       },
       acc:{
         account: 0,

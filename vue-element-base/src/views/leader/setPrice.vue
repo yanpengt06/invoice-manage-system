@@ -1,14 +1,14 @@
 <template>
 <el-container> 
-  <el-form ref="form" :model="good" label-width="120px" style="margin:100px auto auto 500px" :rules="rules">
-    <el-form-item label="商品Id" prop="id">
-      <el-input v-model="good.id" style="width: 250px"></el-input>
+  <el-form ref="form" :model="good" label-width="120px" style="margin:100px auto auto 400px" :rules="rules">
+    <el-form-item label="商品Id" prop="id" >
+      <el-input v-model="good.id" style="width: 250px" placeholder="请输入商品ID"></el-input>
     </el-form-item>
     <el-form-item label="商品零售价" prop="retailPrice">
-      <el-input v-model="good.retailPrice" style="width: 200px"></el-input>
+      <el-input v-model="good.retailPrice" style="width: 200px" placeholder="请输入商品零售价"></el-input>
     </el-form-item>
     <el-form-item label="商品批发价" prop="wholesalePrice"> 
-      <el-input v-model="good.wholesalePrice" style="width: 200px"></el-input>
+      <el-input v-model="good.wholesalePrice" style="width: 200px" placeholder="请输入商品批发价"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">设定价格</el-button>
@@ -54,9 +54,9 @@ export default {
     };      
     return {
       good: {
-        id: 5,
-        retailPrice: 60,
-        wholesalePrice: 55
+        id: "",
+        retailPrice: "",
+        wholesalePrice: ""
       },
       rules: {
         id: [{validator: validateInt, trigger: "blur"}],

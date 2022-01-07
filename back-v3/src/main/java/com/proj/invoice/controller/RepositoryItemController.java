@@ -57,7 +57,7 @@ public class RepositoryItemController {
             repositoryItem_new.setRepositoryId(repId);
             repositoryItem_new.setNum(num);
             repositoryItem_new.setGoodId(goodId);
-            repositoryItemMapper.insert(repositoryItem);
+            repositoryItemMapper.insert(repositoryItem_new);
         }else{
             repositoryItem.setNum(repositoryItem.getNum()+num);
             update(repositoryItem);
