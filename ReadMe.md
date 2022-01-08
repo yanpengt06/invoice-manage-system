@@ -6,6 +6,7 @@
 - 开发模式采用Vue+Springboot+MybatisPlus
 - 组件库为elementUI
 - 后台管理模板为vue-element-admin
+- 用户手册在back-v3/src/main/resources/public/UserBook.docx
 
 ## 使用环境配置
 
