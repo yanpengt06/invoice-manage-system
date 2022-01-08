@@ -55,7 +55,7 @@ export default {
     },
 
     download() {
-      window.location.href = "http://localhost:8080/userbook.docx";
+      window.location.href = "http://localhost:8080/UserBook.docx";
     },
   },
 };
