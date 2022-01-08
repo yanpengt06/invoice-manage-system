@@ -16,7 +16,7 @@
       </el-table-column>
       <el-table-column label="客户ID" width="180" prop="customerId">
       </el-table-column>
-      <el-table-column label="订单状态" width="360">
+      <el-table-column label="订单状态" width="180">
         <template slot-scope="scope">
           <el-tag type="success" v-if="scope.row.state == '已保存'">
             {{ scope.row.state }}
@@ -30,15 +30,25 @@
           <el-tag v-if="scope.row.state == '待出库'">
             {{ scope.row.state }}
           </el-tag>
-          <el-tag  v-if="scope.row.state == '已完成'">
+          <el-tag v-if="scope.row.state == '已完成'">
             {{ scope.row.state }}
           </el-tag>
           <el-tag type="info" v-if="scope.row.state == '已退货'">
             {{ scope.row.state }}
-          </el-tag>          
+          </el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="address" label="操作">
+      <el-table-column  align="center">
+        <template slot="header" slot-scope="scope">
+          <el-input
+            v-model="search"
+            size="mini"
+            placeholder="输入订单号搜索"
+            style="width: 150px"
+            @keyup.enter.native="searchByOrderId"
+          />
+          <el-button @click="searchByOrderId" style="margin-left:10px" size="small"> 搜索</el-button>
+        </template>
         <template slot-scope="scope">
           <el-button
             v-if="scope.row.state == '已保存'"
@@ -70,8 +80,9 @@
 </template>
 
   <script>
-import { getAll } from "@/api/order";
+import { getAll, getOrderById } from "@/api/order";
 import { getCustmById } from "@/api/customer";
+import { getAllGoods } from '@/api/good';
 export default {
   data() {
     return {
@@ -86,6 +97,7 @@ export default {
       ],
       currentPage: 1, //初始页
       pagesize: 10, //    每页的数据
+      search: '',
     };
   },
   created() {
@@ -105,7 +117,7 @@ export default {
       this.$router.push("/order/detail/" + id);
     },
     handleModify(id) {
-      this.$router.push("/saler/makeOrder/" + id);
+      this.$router.push("/order/makeOrder/" + id);
     },
     handleSizeChange(size) {
       this.pagesize = size;
@@ -142,6 +154,18 @@ export default {
     //     return result;
     //   }));
     // },
+    searchByOrderId() {
+      if(this.search == "")
+      {
+        this.getAllOrders()
+      }
+      else{
+      getOrderById(this.search).then(res =>{
+        this.orders = [res.data.item]
+        console.log(this.orders)
+      })
+      }
+    }
   },
 };
 </script>

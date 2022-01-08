@@ -37,7 +37,7 @@ export default {
   },
   methods: {
       handleDetail(customerID) {
-          this.$router.push("/leader/saleStatistics/" + customerID)
+          this.$router.push("/stat/saleStatistics/" + customerID)
       }
   }
 };
