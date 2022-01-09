@@ -6,7 +6,7 @@
 - 开发模式采用Vue+Springboot+MybatisPlus
 - 组件库为elementUI
 - 后台管理模板为vue-element-admin
-- 用户手册在back-v3/src/main/resources/public/UserBook.docx
+- 用户手册在back-v3/src/main/resources/public/UserBook.docx，内有详细使用指南及环境配置保姆级教程
 
 ## 使用环境配置
 
@@ -22,6 +22,10 @@
 2. navicat连接数据库，默认3306端口，输入安装时的用户名与密码
 3. 连接上后在navicate右键数据库，运行转储好的sql文件，数据库配置完毕
 4. 系统异常处理不完善，仍有一些bug，不要用不存在的客户开单、开不存在的物品等等，先新增再使用。系统目前已有客户、仓库等信息可在信息查询中获取，已有货品可在库存统计中查看
+
+## 项目部署
+
+- 本项目已部署至腾讯云服务器，公网IP：101.43.135.58
 
 ## 分工
 
